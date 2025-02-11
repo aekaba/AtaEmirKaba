@@ -1,0 +1,92 @@
+{
+  "egitim": [
+    {
+      "bolum": "Yazılım Mühendisliği",
+      "kurum": "Beykent Üniversitesi",
+      "yillar": "2021 - Devam Ediyor",
+      "link": "https://www.beykent.edu.tr/"
+    },
+    {
+      "bolum": "Bilişim / Veritabanı Programcılığı",
+      "kurum": "Haydar Akın Teknik Lisesi",
+      "yillar": "2017 - 2021",
+      "link": "https://www.haydara.meb.k12.tr/tr/haydara-teknik-lisesi"
+    }
+  ],
+  "sertifikalar": [
+    {
+      "ad": "Flutter Fest Başarı Sertifikası",
+      "kurum": "Google Developer Students Club",
+      "yil": 2022,
+      "link":"https://verified.cv/en/verify/97494403400894"
+    },
+    {
+      "ad": "Flutter Fest Katılım Sertifikası",
+      "kurum": "Google Developer Students Club",
+      "yil": 2022
+    },
+    {
+      "ad": "Versiyon Kontrol Sistemleri: Git ve GitHub",
+      "kurum": "BTK Akademi",
+      "yil": 2022,
+      "link":"https://www.btkakademi.gov.tr/portal/certificate/validate?certificateId=dx1hABDMw1"
+    },
+    {
+      "ad": "Veri Bilimi ve Yapay Zekaya Giriş",
+      "kurum": "Turkcell Geleceği Yazanlar",
+      "yil": 2023,
+      "link":"https://gelecegiyazanlar.turkcell.com.tr/certificate/dWlkMjM5NjQ1Y2lkNTQ2cWlkMTA1ZW5k"
+    },
+    {
+      "ad": "Veri Okuryazarlığı",
+      "kurum": "Turkcell Geleceği Yazanlar",
+      "yil": 2023,
+      "link":"https://gelecegiyazanlar.turkcell.com.tr/certificate/dWlkMjM5NjQ1Y2lkNTQ4cWlkMTA3ZW5k"
+    },
+    {
+      "ad": "Python Bootcamp",
+      "kurum": "Global AI Hub",
+      "yil": 2022
+    },
+    {
+      "ad": "Python For Machine Learning",
+      "kurum": "Turkcell Geleceği Yazanlar",
+      "yil": 2023  
+    },
+    
+    {
+      "ad": "HTML5 ile Web Geliştirme",
+      "kurum": "BTK Akademi",
+      "yil": 2022,
+      "link":"https://www.btkakademi.gov.tr/portal/certificate/validate?certificateId=gK2ho7XXzJ"
+    }
+  ],
+  "yetenekler": {
+    "mobil_gelistirme": ["Flutter", "Swift", "SwiftUI"],
+    "backend_api": ["Firebase", "REST API","Node.js", "Django"],
+    "programlama_dilleri": ["Dart", "C++", "Java", "Python"],
+    "diger": ["Git", "UI/UX Tasarım", "State Management (BloC, Provider)"]
+  },
+  "is_deneyimi": [
+    {
+      "pozisyon": "Freelance Mobil Uygulama Geliştirici",
+      "sirket": "The Food Runners",
+      "yillar": "07.2021 - Devam Ediyor",
+      "aciklama": "Flutter kullanarak Cross Platform bir uygulama geliştirip AppStore & PlayStore da yayınladım."
+    },
+    {
+      "pozisyon": "Mobil Uygulama Geliştirici Gönüllü Stajyeri",
+      "sirket": "New Software Solutions",
+      "yillar": "07.2021 - 02.2022",
+      "aciklama": "Flutter kullanarak bir tablet uygulaması geliştirdim ve PlayStore da yayınladım."
+    }
+  ],
+  "gonullu_deneyim": [
+    {
+      "pozisyon": "Yazılım Mühendisliği Kulübü Yöneticiliği",
+      "kurum": "Beykent Üniversitesi",
+      "yillar": "2022 - 2023",
+      "aciklama": "40'tan fazla katılımcı ile kodlama etkinlikleri düzenleme, teknik danışmanlık ve üyelerin kodlama becerilerini geliştirmelerine yardımcı olma."
+    }
+  ]
+} 

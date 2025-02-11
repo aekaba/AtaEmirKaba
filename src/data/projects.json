@@ -1,0 +1,85 @@
+{
+  "profesyonel": [
+    {
+      "ad": "The Food Runner Drivers",
+      "aciklama": "Hali hazırda olan web sitesi ile uyumlu uygulaması. Şöförler siparişlerini kontrol edip, siparişin durumunu güncelleyebilir. Siparişi bitirince fotoğrafını çekip ofise gönderebilir ve ofis tüm bu olanların konum takibini yapabilir.",
+      "teknolojiler": ["Flutter", "REST API", "State Management (BLoC)"],
+      "platformlar": ["iOS", "Android"],
+      "resim": "/images/projects/thefoodrunnerdrivers.png",
+      "linkler": {
+        "appstore": "https://apps.apple.com/pl/app/the-food-runners-drivers/id6476556928",
+        "playstore": "https://play.google.com/store/apps/details?id=com.thefoodrunners.drivers",
+        "github": null
+      }
+    },
+    {
+      "ad": "Umut Defter ",
+      "aciklama": "Şirketler arası satış yönetimi için tablet uygulaması. Satış temsilcileri sahada ürün siparişi alabilir ve stok takibi yapabilir.",
+      "teknolojiler": ["Flutter", "REST API"],
+      "platformlar": ["Android"],
+      "resim": "/images/projects/umutdefter.jpg",
+      "linkler": {
+        "playstore": "https://play.google.com/store/apps/details?id=com.nwblsm.umutdefter",
+        "github": null
+      }
+    }
+  ],
+  "akademik": [
+    {
+      "ad": "Yapay Zeka Destekli Müşteri Kaybı Analizi",
+      "aciklama": "Üniversite bünyesinde Bitirme tezimde arkadaşlarımla birlikte yazdığımız bir makale. 5 farklı makine öğrenmesi, 5 farklı derin öğrenme ve 1 tanede özgün algoritma ile model eğitimleri gerçekleştirilip gerekli metriklerde ölçümler yapılıp değerlendirilmiştir.",
+      "teknolojiler": ["Python", "Machine Learning", "Deep Learning","Explainable AI"],
+      "platformlar": [],
+      "resim": null,
+      "linkler": {
+        "web": null,
+        "github": "https://github.com/aekaba/Customer-Churn-Prediction-with-AI"
+      }
+    },
+    {
+      "ad": "NLP yöntemiyle restoran yorumlarının sınıflandırılması",
+      "aciklama": "Üniversite bünyesinde Doğal Dil İşleme dersi kapsamında yapmış olduğum projedir. Restoran yorumlarının sınıflandırılması için kullanılan bir model geliştirdim. İTÜ DDİ Grubunun yayınladığı bir veri seti kullanılmıştır.",
+      "teknolojiler": ["Python", "Machine Learning", "NLP"],
+      "platformlar": ["Github"],
+      "resim": null,
+      "linkler": {
+        "web": null,
+        "github": "https://github.com/aekaba/RestoranReviewsNLP"
+      }
+    },
+    {
+      "ad": "Java Akademik Projeler",
+      "aciklama": "Üniversite bünyesinde Java'ya giriş ve İleri Java dersleri kapsamında yazmış olduğum kodlar.",
+      "teknolojiler": ["Java", "Spring"],
+      "platformlar": ["Github"],
+      "resim": null,
+      "linkler": {
+        "web": null,
+        "github": "https://github.com/aekaba/JavaAcademicProjects"
+      }
+    }
+  ],
+  "kisisel": [
+    {
+      "ad": "Ata Emir Kaba Portfolio",
+      "aciklama": "Bu portfolio, Ata Emir Kaba'nın kişisel bilgilerini, projelerini ve tecrübelerini sunar. React.js ve tailwind css kullanılarak geliştirilmiştir.",
+      "teknolojiler": ["ReactJS", "Tailwind CSS"],
+      "platformlar": ["Web"],
+      "resim": null,
+      "linkler": {
+        "web": "https://ataemirkaba.com",
+        "github": "https://github.com/aekaba/AtaEmirKaba"
+      }
+    },
+    {
+      "ad": "NBA App",
+      "aciklama": "NBA maçlarının sonuçlarını görüntüleyebilen bir uygulama. Flutter & Dart kullanılarak geliştirilmiştir.",
+      "teknolojiler": ["Flutter", "Dart","REST API"],
+      "platformlar": [],
+      "resim": null,
+      "linkler": {
+        "github": "https://github.com/aekaba/NBA"
+      }
+    }
+  ]
+} 
