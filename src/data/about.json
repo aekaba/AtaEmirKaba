@@ -10,7 +10,7 @@
       "bolum": "Bilişim / Veritabanı Programcılığı",
       "kurum": "Haydar Akın Teknik Lisesi",
       "yillar": "2017 - 2021",
-      "link": "https://www.haydara.meb.k12.tr/tr/haydara-teknik-lisesi"
+      "link": "https://haydarakin.meb.k12.tr/"
     }
   ],
   "sertifikalar": [
@@ -18,7 +18,7 @@
       "ad": "Flutter Fest Başarı Sertifikası",
       "kurum": "Google Developer Students Club",
       "yil": 2022,
-      "link":"https://verified.cv/en/verify/97494403400894"
+      "link": "https://verified.cv/en/verify/97494403400894"
     },
     {
       "ad": "Flutter Fest Katılım Sertifikası",
@@ -29,19 +29,19 @@
       "ad": "Versiyon Kontrol Sistemleri: Git ve GitHub",
       "kurum": "BTK Akademi",
       "yil": 2022,
-      "link":"https://www.btkakademi.gov.tr/portal/certificate/validate?certificateId=dx1hABDMw1"
+      "link": "https://www.btkakademi.gov.tr/portal/certificate/validate?certificateId=dx1hABDMw1"
     },
     {
       "ad": "Veri Bilimi ve Yapay Zekaya Giriş",
       "kurum": "Turkcell Geleceği Yazanlar",
       "yil": 2023,
-      "link":"https://gelecegiyazanlar.turkcell.com.tr/certificate/dWlkMjM5NjQ1Y2lkNTQ2cWlkMTA1ZW5k"
+      "link": "https://gelecegiyazanlar.turkcell.com.tr/certificate/dWlkMjM5NjQ1Y2lkNTQ2cWlkMTA1ZW5k"
     },
     {
       "ad": "Veri Okuryazarlığı",
       "kurum": "Turkcell Geleceği Yazanlar",
       "yil": 2023,
-      "link":"https://gelecegiyazanlar.turkcell.com.tr/certificate/dWlkMjM5NjQ1Y2lkNTQ4cWlkMTA3ZW5k"
+      "link": "https://gelecegiyazanlar.turkcell.com.tr/certificate/dWlkMjM5NjQ1Y2lkNTQ4cWlkMTA3ZW5k"
     },
     {
       "ad": "Python Bootcamp",
@@ -51,19 +51,18 @@
     {
       "ad": "Python For Machine Learning",
       "kurum": "Turkcell Geleceği Yazanlar",
-      "yil": 2023  
+      "yil": 2023
     },
-    
     {
       "ad": "HTML5 ile Web Geliştirme",
       "kurum": "BTK Akademi",
       "yil": 2022,
-      "link":"https://www.btkakademi.gov.tr/portal/certificate/validate?certificateId=gK2ho7XXzJ"
+      "link": "https://www.btkakademi.gov.tr/portal/certificate/validate?certificateId=gK2ho7XXzJ"
     }
   ],
   "yetenekler": {
     "mobil_gelistirme": ["Flutter", "Swift", "SwiftUI"],
-    "backend_api": ["Firebase", "REST API","Node.js", "Django"],
+    "backend_api": ["Firebase", "REST API", "Node.js", "Django"],
     "programlama_dilleri": ["Dart", "C++", "Java", "Python"],
     "diger": ["Git", "UI/UX Tasarım", "State Management (BloC, Provider)"]
   },
