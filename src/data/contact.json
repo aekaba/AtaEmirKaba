@@ -1,0 +1,27 @@
+{
+  "baslik": "Referanslarım hakkında bilgi almak veya benimle iletişime geçmek için lütfen bana bu mail adresinden ulaşın",
+  "email": "ataemirkaba@gmail.com",
+  "cv": "/files/cv.pdf",
+  "sosyal_medya": [
+    {
+      "platform": "GitHub",
+      "url": "https://github.com/aekaba",
+      "icon": "FaGithub"
+    },
+    {
+      "platform": "LinkedIn",
+      "url": "https://www.linkedin.com/in/ataemirkaba/",
+      "icon": "FaLinkedin"
+    },
+    {
+      "platform": "X",
+      "url": "https://x.com/ae_kaba",
+      "icon": "FaXTwitter"
+    },
+    {
+      "platform": "Instagram",
+      "url": "https://www.instagram.com/ataemirkaba/",
+      "icon": "FaInstagram"
+    }
+  ]
+} 
