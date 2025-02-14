@@ -70,7 +70,7 @@ const Projects = ({ setIsModalOpen }) => {
         {proje.resim ? (
           <img
             src={proje.resim}
-            alt={proje.ad}
+            alt={`${proje.ad} projesi görseli - ${proje.aciklama.slice(0, 50)}...`}
             className="w-full h-full object-cover"
           />
         ) : (
@@ -198,7 +198,7 @@ const Projects = ({ setIsModalOpen }) => {
               <div className="w-full aspect-video">
                 <img
                   src={project.resim}
-                  alt={project.ad}
+                  alt={`${project.ad} projesi detaylı görseli - ${project.aciklama.slice(0, 50)}...`}
                   className="w-full h-full object-contain bg-gray-100 dark:bg-gray-700"
                 />
               </div>

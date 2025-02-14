@@ -51,7 +51,7 @@ const Contact = () => {
               <h3 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white">Email</h3>
               <button
                 onClick={handleEmailClick}
-                className="text-sm sm:text-base text-blue-600 dark:text-blue-400 hover:underline"
+                className="text-sm sm:text-base text-blue-600 dark:text-blue-400 hover:underline focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900 rounded-md px-2 py-1"
               >
                 {contactData.email}
               </button>
@@ -72,7 +72,7 @@ const Contact = () => {
               <h3 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white">CV</h3>
               <button
                 onClick={handleCVDownload}
-                className="px-4 sm:px-6 py-1.5 sm:py-2 bg-green-600 hover:bg-green-700 text-white text-sm sm:text-base rounded-full transition-colors"
+                className="px-4 sm:px-6 py-1.5 sm:py-2 bg-green-600 hover:bg-green-700 text-white text-sm sm:text-base rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900"
               >
                 CV'mi İndir
               </button>
@@ -100,7 +100,7 @@ const Contact = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.1 }}
-                  className="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors"
+                  className="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors p-2 rounded-full focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900"
                 >
                   <Icon className="text-xl sm:text-2xl" />
                 </motion.a>

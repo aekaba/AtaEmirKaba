@@ -17,15 +17,15 @@ const Home = () => {
               Merhaba, ben Ata Emir!
             </h1>
             <div className="prose prose-sm sm:prose dark:prose-invert max-w-none">
-              <p className="text-xs sm:text-sm md:text-base text-gray-600 dark:text-gray-300 mb-2 sm:mb-3">
+              <p className="text-sm sm:text-base md:text-lg leading-relaxed sm:leading-relaxed text-gray-800 dark:text-gray-200 mb-4 sm:mb-6">
                 Beykent Üniversitesi'nde 4. sınıf Yazılım Mühendisliği öğrencisiyim. Okul dışında freelance projelerle 
                 mobil uygulama geliştirme konusunda kendimi geliştirdim. Şu anda Flutter ile cross-platform uygulamalar 
                 geliştiriyorum. Ayrıca Swift & SwiftUI öğrenerek native iOS geliştirme konusunda da kendimi ileriye taşıyorum.
               </p>
-              <p className="text-xs sm:text-sm md:text-base text-gray-600 dark:text-gray-300 mb-2 sm:mb-3">
+              <p className="text-sm sm:text-base md:text-lg leading-relaxed sm:leading-relaxed text-gray-800 dark:text-gray-200 mb-4 sm:mb-6">
                 Okulumda C++, Java ve Python gibi diller üzerine çalışarak yazılım bilgimi genişletmeye devam ediyorum.
               </p>
-              <p className="text-xs sm:text-sm md:text-base text-gray-600 dark:text-gray-300">
+              <p className="text-sm sm:text-base md:text-lg leading-relaxed sm:leading-relaxed text-gray-800 dark:text-gray-200">
                 Bu portfolio sitesinde CV'mi, projelerimi ve ileride yazacağım blog yazılarımı bulabilirsiniz.
               </p>
             </div>
