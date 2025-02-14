@@ -5,7 +5,7 @@
       "aciklama": "Hali hazırda olan web sitesi ile uyumlu uygulaması. Şöförler siparişlerini kontrol edip, siparişin durumunu güncelleyebilir. Siparişi bitirince fotoğrafını çekip ofise gönderebilir ve ofis tüm bu olanların konum takibini yapabilir.",
       "teknolojiler": ["Flutter", "REST API", "State Management (BLoC)"],
       "platformlar": ["iOS", "Android"],
-      "resim": "/images/projects/thefoodrunnerdrivers.png",
+      "resim": "/images/thefoodrunnerdrivers.png",
       "linkler": {
         "appstore": "https://apps.apple.com/pl/app/the-food-runners-drivers/id6476556928",
         "playstore": "https://play.google.com/store/apps/details?id=com.thefoodrunners.drivers",
@@ -17,7 +17,7 @@
       "aciklama": "Şirketler arası satış yönetimi için tablet uygulaması. Satış temsilcileri sahada ürün siparişi alabilir ve stok takibi yapabilir.",
       "teknolojiler": ["Flutter", "REST API"],
       "platformlar": ["Android"],
-      "resim": "/images/projects/umutdefter.jpg",
+      "resim": "/images/umutdefter.jpg",
       "linkler": {
         "playstore": "https://play.google.com/store/apps/details?id=com.nwblsm.umutdefter",
         "github": null
