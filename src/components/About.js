@@ -51,7 +51,7 @@ const About = () => {
             className="space-y-4"
           >
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Eğitim</h2>
-            <div className="grid grid-cols-1 gap-4">
+            <div className="grid grid-cols-1 gap-4 auto-rows-max">
               {aboutData.egitim.sort(sortByDate).map((edu, index) => (
                 <motion.a 
                   key={index}
@@ -134,7 +134,7 @@ const About = () => {
             className="space-y-4"
           >
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Sertifikalar</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 auto-rows-max">
               {aboutData.sertifikalar.sort((a, b) => b.yil - a.yil).map((cert, index) => (
                 <motion.a
                   key={index}
@@ -193,14 +193,14 @@ const About = () => {
   return (
     <Layout>
       {/* Alt Navigasyon - Sabit Başlık */}
-      <div className="sticky top-0 z-10 bg-gray-50/80 dark:bg-gray-900/80 backdrop-blur-sm">
-        <div className="flex overflow-x-auto pb-4 scrollbar-hide">
-          <div className="flex space-x-4">
+      <div className="sticky top-0 z-10 bg-gray-50/80 dark:bg-gray-900/80 backdrop-blur-sm py-2 border-b border-gray-200 dark:border-gray-700">
+        <div className="flex overflow-x-auto scrollbar-hide">
+          <div className="flex space-x-2 sm:space-x-4 px-2 sm:px-4">
             {sections.map((section) => (
               <button
                 key={section.id}
                 onClick={() => setCurrentSection(section.id)}
-                className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-colors
+                className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium whitespace-nowrap transition-colors
                   ${currentSection === section.id
                     ? 'bg-gray-900 text-white dark:bg-white dark:text-gray-900'
                     : 'text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white'
@@ -214,11 +214,37 @@ const About = () => {
       </div>
 
       {/* Kaydırılabilir İçerik */}
-      <div className="flex-1 overflow-y-auto">
+      <div className="relative h-[calc(100vh-12rem)] overflow-y-auto px-2 sm:px-4 pb-6 custom-scrollbar">
+        <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-transparent via-transparent to-gray-50 dark:to-gray-900 opacity-50" />
         <AnimatePresence mode="wait">
           {renderContent()}
         </AnimatePresence>
       </div>
+
+      <style jsx global>{`
+        .custom-scrollbar::-webkit-scrollbar {
+          width: 6px;
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar-track {
+          background: transparent;
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+          background-color: rgba(156, 163, 175, 0.5);
+          border-radius: 20px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+          background-color: rgba(156, 163, 175, 0.7);
+        }
+
+        @media (max-width: 640px) {
+          .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+          }
+        }
+      `}</style>
     </Layout>
   );
 };

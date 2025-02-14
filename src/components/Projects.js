@@ -331,12 +331,12 @@ const Projects = ({ setIsModalOpen }) => {
     <Layout title="Projelerim">
       {/* Alt Navigasyon */}
       <div className="flex justify-center mb-3">
-        <div className="flex space-x-3 bg-white dark:bg-gray-800 rounded-full p-1 shadow-md">
+        <div className="flex space-x-2 sm:space-x-3 bg-white dark:bg-gray-800 rounded-full p-1 shadow-md">
           {sections.map((section) => (
             <button
               key={section.id}
               onClick={() => handleSectionChange(section.id)}
-              className={`px-3 py-1 rounded-full text-sm font-medium transition-colors
+              className={`px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium transition-colors
                 ${currentSection === section.id
                   ? 'bg-gray-900 text-white dark:bg-white dark:text-gray-900'
                   : 'text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white'
@@ -351,7 +351,7 @@ const Projects = ({ setIsModalOpen }) => {
       {/* Projeler Grid */}
       <div 
         ref={projectsContainerRef}
-        className="overflow-y-auto pb-4" 
+        className="overflow-y-auto pb-4 px-2 sm:px-4" 
         style={{ maxHeight: 'calc(100vh - 160px)' }}
         onClick={(e) => e.stopPropagation()}
       >
@@ -362,7 +362,7 @@ const Projects = ({ setIsModalOpen }) => {
             initial="hidden"
             animate="show"
             exit="hidden"
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4"
           >
             {projectsData[currentSection].map((proje, index) => (
               renderProjectCard(proje)

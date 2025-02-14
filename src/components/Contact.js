@@ -23,35 +23,35 @@ const Contact = () => {
 
   return (
     <Layout title="İletişim">
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-4xl mx-auto px-2 sm:px-4">
         {/* Başlık */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-8"
+          className="text-center mb-6 sm:mb-8"
         >
-          <p className="text-lg text-gray-600 dark:text-gray-300">
+          <p className="text-sm sm:text-lg text-gray-600 dark:text-gray-300">
             {contactData.baslik}
           </p>
         </motion.div>
 
         {/* İletişim Kartları */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
           {/* Email Kartı */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.2 }}
-            className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow"
+            className="bg-white dark:bg-gray-800 rounded-lg p-4 sm:p-6 shadow-md hover:shadow-lg transition-shadow"
           >
-            <div className="flex flex-col items-center text-center space-y-4">
-              <div className="p-3 bg-blue-100 dark:bg-blue-900 rounded-full">
-                <FaEnvelope className="text-blue-600 dark:text-blue-300" size={24} />
+            <div className="flex flex-col items-center text-center space-y-3 sm:space-y-4">
+              <div className="p-2 sm:p-3 bg-blue-100 dark:bg-blue-900 rounded-full">
+                <FaEnvelope className="text-blue-600 dark:text-blue-300 text-xl sm:text-2xl" />
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Email</h3>
+              <h3 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white">Email</h3>
               <button
                 onClick={handleEmailClick}
-                className="text-blue-600 dark:text-blue-400 hover:underline"
+                className="text-sm sm:text-base text-blue-600 dark:text-blue-400 hover:underline"
               >
                 {contactData.email}
               </button>
@@ -63,16 +63,16 @@ const Contact = () => {
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.3 }}
-            className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow"
+            className="bg-white dark:bg-gray-800 rounded-lg p-4 sm:p-6 shadow-md hover:shadow-lg transition-shadow"
           >
-            <div className="flex flex-col items-center text-center space-y-4">
-              <div className="p-3 bg-green-100 dark:bg-green-900 rounded-full">
-                <FaFileDownload className="text-green-600 dark:text-green-300" size={24} />
+            <div className="flex flex-col items-center text-center space-y-3 sm:space-y-4">
+              <div className="p-2 sm:p-3 bg-green-100 dark:bg-green-900 rounded-full">
+                <FaFileDownload className="text-green-600 dark:text-green-300 text-xl sm:text-2xl" />
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white">CV</h3>
+              <h3 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white">CV</h3>
               <button
                 onClick={handleCVDownload}
-                className="px-6 py-2 bg-green-600 hover:bg-green-700 text-white rounded-full transition-colors"
+                className="px-4 sm:px-6 py-1.5 sm:py-2 bg-green-600 hover:bg-green-700 text-white text-sm sm:text-base rounded-full transition-colors"
               >
                 CV'mi İndir
               </button>
@@ -85,12 +85,12 @@ const Contact = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4 }}
-          className="mt-8 text-center"
+          className="mt-6 sm:mt-8 text-center"
         >
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+          <h3 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white mb-3 sm:mb-4">
             Sosyal Medya
           </h3>
-          <div className="flex justify-center space-x-6">
+          <div className="flex justify-center space-x-4 sm:space-x-6">
             {contactData.sosyal_medya.map((platform, index) => {
               const Icon = socialIcons[platform.icon];
               return (
@@ -102,7 +102,7 @@ const Contact = () => {
                   whileHover={{ scale: 1.1 }}
                   className="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors"
                 >
-                  <Icon size={28} />
+                  <Icon className="text-xl sm:text-2xl" />
                 </motion.a>
               );
             })}
