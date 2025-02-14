@@ -1,41 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { AiOutlineHome, AiOutlineUser, AiOutlineProject, AiOutlineMail } from 'react-icons/ai';
+import { AiOutlineHome, AiOutlineUser, AiOutlineProject, AiOutlineMail, AiOutlineMenu, AiOutlineClose } from 'react-icons/ai';
 
 const Navbar = ({ onNavClick }) => {
-  const [hoveredItem, setHoveredItem] = useState(null);
-  const [isVisible, setIsVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      
-      if (isMobile) {
-        if (currentScrollY > lastScrollY) {
-          setIsVisible(false);
-        } else {
-          setIsVisible(true);
-        }
-        setLastScrollY(currentScrollY);
-      } else {
-        setIsVisible(true);
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+      if (window.innerWidth > 768) {
+        setIsMenuOpen(false);
       }
     };
 
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-
-    window.addEventListener('scroll', handleScroll);
     window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('resize', handleResize);
-    };
-  }, [lastScrollY, isMobile]);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const navItems = [
     { title: 'Ana Sayfa', href: 'home', icon: <AiOutlineHome size={20} /> },
@@ -44,9 +25,82 @@ const Navbar = ({ onNavClick }) => {
     { title: 'İletişim', href: 'contact', icon: <AiOutlineMail size={20} /> }
   ];
 
+  const handleNavClick = (href) => {
+    onNavClick(href);
+    setIsMenuOpen(false);
+  };
+
+  // Mobil menü animasyonu
+  const menuVariants = {
+    closed: {
+      opacity: 0,
+      x: "-100%",
+      transition: {
+        duration: 0.2
+      }
+    },
+    open: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: 0.3
+      }
+    }
+  };
+
   return (
-    <AnimatePresence>
-      {isVisible && (
+    <>
+      {/* Hamburger Menü Butonu - Mobil */}
+      {isMobile && (
+        <motion.button
+          initial={false}
+          animate={{ opacity: 1 }}
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          className="fixed top-4 left-4 z-50 p-2 rounded-lg bg-white/10 dark:bg-gray-800/10 backdrop-blur-sm border border-gray-200 dark:border-gray-700"
+        >
+          {isMenuOpen ? (
+            <AiOutlineClose size={24} className="text-gray-600 dark:text-gray-300" />
+          ) : (
+            <AiOutlineMenu size={24} className="text-gray-600 dark:text-gray-300" />
+          )}
+        </motion.button>
+      )}
+
+      {/* Mobil Menü */}
+      <AnimatePresence>
+        {isMobile && isMenuOpen && (
+          <motion.div
+            initial="closed"
+            animate="open"
+            exit="closed"
+            variants={menuVariants}
+            className="fixed inset-y-0 left-0 w-64 z-40 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-xl"
+          >
+            <div className="pt-16 px-4">
+              <ul className="space-y-4">
+                {navItems.map((item) => (
+                  <motion.li
+                    key={item.href}
+                    whileHover={{ x: 10 }}
+                    className="relative"
+                  >
+                    <button
+                      onClick={() => handleNavClick(item.href)}
+                      className="flex items-center space-x-3 text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors w-full p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800"
+                    >
+                      <span className="text-xl">{item.icon}</span>
+                      <span className="text-base font-medium">{item.title}</span>
+                    </button>
+                  </motion.li>
+                ))}
+              </ul>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Desktop Menü */}
+      {!isMobile && (
         <motion.nav 
           initial={{ opacity: 0, x: -100 }}
           animate={{ opacity: 1, x: 0 }}
@@ -54,37 +108,38 @@ const Navbar = ({ onNavClick }) => {
           transition={{ duration: 0.3 }}
           className="fixed left-0 top-1/3 -translate-y-1/2 z-50 bg-white/10 dark:bg-gray-800/10 backdrop-blur-sm rounded-r-lg"
         >
-          <ul className="space-y-4 sm:space-y-6 p-3 sm:p-4">
+          <ul className="space-y-6 p-4">
             {navItems.map((item) => (
               <motion.li
                 key={item.href}
-                onHoverStart={() => setHoveredItem(item.href)}
-                onHoverEnd={() => setHoveredItem(null)}
-                className="relative flex items-center"
+                whileHover={{ x: 10 }}
+                className="relative"
               >
-                <motion.button
-                  onClick={() => onNavClick(item.href)}
+                <button
+                  onClick={() => handleNavClick(item.href)}
                   className="flex items-center text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors p-2"
-                  whileHover={{ x: 10 }}
                 >
-                  <span className="text-xl sm:text-2xl">{item.icon}</span>
-                  <motion.span
-                    initial={{ opacity: 0, width: 0 }}
-                    animate={{
-                      opacity: hoveredItem === item.href ? 1 : 0,
-                      width: hoveredItem === item.href ? 'auto' : 0
-                    }}
-                    className="ml-2 text-sm sm:text-base overflow-hidden whitespace-nowrap font-medium"
-                  >
-                    {item.title}
-                  </motion.span>
-                </motion.button>
+                  <span className="text-2xl">{item.icon}</span>
+                </button>
               </motion.li>
             ))}
           </ul>
         </motion.nav>
       )}
-    </AnimatePresence>
+
+      {/* Overlay - Mobil menü açıkken arka planı karartma */}
+      <AnimatePresence>
+        {isMobile && isMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setIsMenuOpen(false)}
+            className="fixed inset-0 bg-black/20 backdrop-blur-sm z-30"
+          />
+        )}
+      </AnimatePresence>
+    </>
   );
 };
 

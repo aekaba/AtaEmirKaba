@@ -50,7 +50,6 @@ const About = () => {
             exit="exit"
             className="space-y-4"
           >
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Eğitim</h2>
             <div className="grid grid-cols-1 gap-4 auto-rows-max">
               {aboutData.egitim.sort(sortByDate).map((edu, index) => (
                 <motion.a 
@@ -79,8 +78,7 @@ const About = () => {
             exit="exit"
             className="space-y-4"
           >
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Deneyim</h2>
-            <div className="grid grid-cols-1 gap-4">
+            <div className="grid grid-cols-1 gap-4 auto-rows-max">
               {aboutData.is_deneyimi.sort(sortByDate).map((exp, index) => (
                 <motion.div 
                   key={index}
@@ -106,8 +104,7 @@ const About = () => {
             exit="exit"
             className="space-y-4"
           >
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Gönüllü Deneyim</h2>
-            <div className="grid grid-cols-1 gap-4">
+            <div className="grid grid-cols-1 gap-4 auto-rows-max">
               {aboutData.gonullu_deneyim.sort(sortByDate).map((exp, index) => (
                 <motion.div 
                   key={index}
@@ -133,7 +130,6 @@ const About = () => {
             exit="exit"
             className="space-y-4"
           >
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Sertifikalar</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 auto-rows-max">
               {aboutData.sertifikalar.sort((a, b) => b.yil - a.yil).map((cert, index) => (
                 <motion.a
@@ -162,7 +158,6 @@ const About = () => {
             exit="exit"
             className="space-y-4"
           >
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Yetenekler</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {Object.entries(aboutData.yetenekler).map(([category, skills]) => (
                 <motion.div key={category} variants={item} className="space-y-3">
@@ -191,30 +186,28 @@ const About = () => {
   };
 
   return (
-    <Layout>
-      {/* Alt Navigasyon - Sabit Başlık */}
-      <div className="sticky top-0 z-10 bg-gray-50/80 dark:bg-gray-900/80 backdrop-blur-sm py-2 border-b border-gray-200 dark:border-gray-700">
-        <div className="flex overflow-x-auto scrollbar-hide">
-          <div className="flex space-x-2 sm:space-x-4 px-2 sm:px-4">
-            {sections.map((section) => (
-              <button
-                key={section.id}
-                onClick={() => setCurrentSection(section.id)}
-                className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium whitespace-nowrap transition-colors
-                  ${currentSection === section.id
-                    ? 'bg-gray-900 text-white dark:bg-white dark:text-gray-900'
-                    : 'text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white'
-                  }`}
-              >
-                {section.title}
-              </button>
-            ))}
-          </div>
+    <Layout title="Hakkımda">
+      {/* Alt Navigasyon */}
+      <div className="flex justify-center mb-3">
+        <div className="flex space-x-2 sm:space-x-3 bg-white dark:bg-gray-800 rounded-full p-1 shadow-md">
+          {sections.map((section) => (
+            <button
+              key={section.id}
+              onClick={() => setCurrentSection(section.id)}
+              className={`px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium transition-colors
+                ${currentSection === section.id
+                  ? 'bg-gray-900 text-white dark:bg-white dark:text-gray-900'
+                  : 'text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white'
+                }`}
+            >
+              {section.title}
+            </button>
+          ))}
         </div>
       </div>
 
       {/* Kaydırılabilir İçerik */}
-      <div className="relative h-[calc(100vh-12rem)] overflow-y-auto px-2 sm:px-4 pb-6 custom-scrollbar">
+      <div className="relative h-[calc(100vh-16rem)] overflow-y-auto px-2 sm:px-4 pb-6 custom-scrollbar">
         <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-transparent via-transparent to-gray-50 dark:to-gray-900 opacity-50" />
         <AnimatePresence mode="wait">
           {renderContent()}

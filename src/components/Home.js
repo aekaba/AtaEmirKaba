@@ -44,6 +44,9 @@ const Home = () => {
                 src="https://ataemirkaba-portfolio.s3.eu-north-1.amazonaws.com/images/jpg/aek.JPG"
                 alt="Ata Emir Kaba"
                 className="relative rounded-xl sm:rounded-2xl shadow-xl w-full h-full object-cover"
+                loading="lazy"
+                width="300"
+                height="300"
               />
             </div>
           </motion.div>

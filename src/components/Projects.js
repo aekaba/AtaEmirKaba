@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaAppStore, FaGooglePlay, FaGlobe, FaGithub, FaCode, FaTimes } from 'react-icons/fa';
 import projectsData from '../data/projects.json';
@@ -173,7 +173,7 @@ const Projects = ({ setIsModalOpen }) => {
   );
 
   // Modal Bileşeni
-  const ProjectModal = ({ project, onClose }) => {
+  const ProjectModal = React.memo(({ project, onClose }) => {
     if (!project) return null;
 
     return (
@@ -325,7 +325,12 @@ const Projects = ({ setIsModalOpen }) => {
         </motion.div>
       </motion.div>
     );
-  };
+  });
+
+  const memoizedProjectCards = useMemo(() => 
+    projectsData[currentSection].map((proje, index) => renderProjectCard(proje)),
+    [currentSection, projectsData, renderProjectCard]
+  );
 
   return (
     <Layout title="Projelerim">
@@ -364,9 +369,7 @@ const Projects = ({ setIsModalOpen }) => {
             exit="hidden"
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4"
           >
-            {projectsData[currentSection].map((proje, index) => (
-              renderProjectCard(proje)
-            ))}
+            {memoizedProjectCards}
           </motion.div>
         </AnimatePresence>
       </div>
