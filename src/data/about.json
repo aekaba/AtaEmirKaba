@@ -3,7 +3,7 @@
     {
       "bolum": "Yazılım Mühendisliği",
       "kurum": "Beykent Üniversitesi",
-      "yillar": "2021 - Devam Ediyor",
+      "yillar": "2021 - 2025",
       "link": "https://www.beykent.edu.tr/"
     },
     {
@@ -61,10 +61,10 @@
     }
   ],
   "yetenekler": {
-    "mobil_gelistirme": ["Flutter", "Swift", "SwiftUI"],
+    "mobil_gelistirme": ["Flutter","ArkTS","ArkUI", "Swift", "SwiftUI"],
     "backend_api": ["Firebase", "REST API", "Node.js", "Django"],
     "programlama_dilleri": ["Dart", "C++", "Java", "Python"],
-    "diger": ["Git", "UI/UX Tasarım", "State Management (BloC, Provider)"]
+    "diger": ["Git", "UI/UX Tasarım", "State Management (BloC, Provider)","MVVM"]
   },
   "is_deneyimi": [
     {
@@ -72,6 +72,12 @@
       "sirket": "The Food Runners",
       "yillar": "07.2021 - Devam Ediyor",
       "aciklama": "Flutter kullanarak Cross Platform bir uygulama geliştirip AppStore & PlayStore da yayınladım."
+    },
+    {
+      "pozisyon": "MSDC Stajyeri",
+      "sirket": "Huawei",
+      "yillar": "06.2025 - 08.2025",
+      "aciklama": "ArkTS kullanarak HarmonyOS ekosistemi için uygulamalar geliştirdim."
     },
     {
       "pozisyon": "Mobil Uygulama Geliştirici Gönüllü Stajyeri",

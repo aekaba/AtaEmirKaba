@@ -56,33 +56,46 @@ const Home = () => {
               className="flex-1 text-left w-full lg:w-3/5 px-0 sm:px-4"
             >
               <h1 
-                className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 text-gray-900 dark:text-white"
-                tabIndex="0"
-              >
-                Merhaba, ben Ata Emir!
-              </h1>
-              <div className="prose prose-sm sm:prose dark:prose-invert max-w-none">
-                <p 
-                  className="text-sm sm:text-base md:text-lg leading-relaxed sm:leading-relaxed text-gray-800 dark:text-gray-100 mb-4 sm:mb-6"
-                  tabIndex="0"
-                >
-                  Beykent Üniversitesi'nde 4. sınıf Yazılım Mühendisliği öğrencisiyim. Okul dışında freelance projelerle 
-                  mobil uygulama geliştirme konusunda kendimi geliştirdim. Şu anda Flutter ile cross-platform uygulamalar 
-                  geliştiriyorum. Ayrıca Swift & SwiftUI öğrenerek native iOS geliştirme konusunda da kendimi ileriye taşıyorum.
-                </p>
-                <p 
-                  className="text-sm sm:text-base md:text-lg leading-relaxed sm:leading-relaxed text-gray-800 dark:text-gray-100 mb-4 sm:mb-6"
-                  tabIndex="0"
-                >
-                  Okulumda C++, Java ve Python gibi diller üzerine çalışarak yazılım bilgimi genişletmeye devam ediyorum.
-                </p>
-                <p 
-                  className="text-sm sm:text-base md:text-lg leading-relaxed sm:leading-relaxed text-gray-800 dark:text-gray-100"
-                  tabIndex="0"
-                >
-                  Bu portfolio sitesinde CV'mi, projelerimi ve ileride yazacağım blog yazılarımı bulabilirsiniz.
-                </p>
-              </div>
+  className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 text-gray-900 dark:text-white"
+  tabIndex="0"
+>
+  Merhaba, ben Ata Emir Kaba!
+</h1>
+
+<div className="prose prose-sm sm:prose dark:prose-invert max-w-none">
+  <p 
+    className="text-sm sm:text-base md:text-lg leading-relaxed sm:leading-relaxed text-gray-800 dark:text-gray-100 mb-4 sm:mb-6"
+    tabIndex="0"
+  >
+    Beykent Üniversitesi Yazılım Mühendisliği bölümünden 3.11 GPA ve Onur Belgesi ile mezun oldum. 
+    Üniversite sürecimde freelance projelerle mobil uygulama geliştirme alanında kendimi geliştirdim 
+    ve gerçek kullanıcıya dokunan ürünler üretme fırsatı buldum.
+  </p>
+
+  <p 
+    className="text-sm sm:text-base md:text-lg leading-relaxed sm:leading-relaxed text-gray-800 dark:text-gray-100 mb-4 sm:mb-6"
+    tabIndex="0"
+  >
+    Huawei MSDC bünyesinde Mobile Developer Intern olarak gerçekleştirdiğim staj sürecinde, HarmonyOS Next 
+    platformunda ArkTS kullanarak özellikle giyilebilir cihazlar için uygulamalar geliştirdim. Bu süreç, farklı 
+    teknolojilere hızlı adapte olma ve ekip içinde üretim yapma konusunda önemli bir deneyim kazandırdı.
+  </p>
+
+  <p 
+    className="text-sm sm:text-base md:text-lg leading-relaxed sm:leading-relaxed text-gray-800 dark:text-gray-100 mb-4 sm:mb-6"
+    tabIndex="0"
+  >
+    Şu anda Flutter ile cross-platform uygulamalar geliştiriyor, aynı zamanda Swift & SwiftUI ile native iOS 
+    geliştirme alanında kendimi ileriye taşımaya devam ediyorum.
+  </p>
+
+  <p 
+    className="text-sm sm:text-base md:text-lg leading-relaxed sm:leading-relaxed text-gray-800 dark:text-gray-100"
+    tabIndex="0"
+  >
+    Bu portfolyo sitesinde projelerimi, CV'mi ve zamanla paylaşacağım teknik içerikleri bulabilirsiniz.
+  </p>
+</div>
             </motion.div>
 
             {/* Sağ taraf - Profil resmi */}

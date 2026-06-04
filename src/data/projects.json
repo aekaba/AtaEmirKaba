@@ -27,7 +27,7 @@
   "akademik": [
     {
       "ad": "Yapay Zeka Destekli Müşteri Kaybı Analizi",
-      "aciklama": "Üniversite bünyesinde Bitirme tezimde arkadaşlarımla birlikte yazdığımız bir makale. 5 farklı makine öğrenmesi, 5 farklı derin öğrenme ve 1 tanede özgün algoritma ile model eğitimleri gerçekleştirilip gerekli metriklerde ölçümler yapılıp değerlendirilmiştir.",
+      "aciklama": "Üniversite bünyesinde Bitirme tezimde arkadaşlarımla birlikte yazdığımız bir makale. 5 farklı makine öğrenmesi, 5 farklı derin öğrenme ve 1 tanede özgün algoritma ile model eğitimleri gerçekleştirilip gerekli metriklerde ölçümler yapılıp değerlendirilmiştir. Bu çalışma ile birlikte Tübitak 2209-A projesine kabul görmüş bulunuyoruz.",
       "teknolojiler": ["Python", "Machine Learning", "Deep Learning","Explainable AI"],
       "platformlar": [],
       "resim": null,
