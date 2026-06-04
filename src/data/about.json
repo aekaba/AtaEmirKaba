@@ -67,6 +67,7 @@
     "diger": ["Git", "UI/UX Tasarım", "State Management (BloC, Provider)","MVVM"]
   },
   "is_deneyimi": [
+    
     {
       "pozisyon": "Freelance Mobil Uygulama Geliştirici",
       "sirket": "The Food Runners",
@@ -74,16 +75,16 @@
       "aciklama": "Flutter kullanarak Cross Platform bir uygulama geliştirip AppStore & PlayStore da yayınladım."
     },
     {
-      "pozisyon": "MSDC Stajyeri",
-      "sirket": "Huawei",
-      "yillar": "06.2025 - 08.2025",
-      "aciklama": "ArkTS kullanarak HarmonyOS ekosistemi için uygulamalar geliştirdim."
-    },
-    {
       "pozisyon": "Mobil Uygulama Geliştirici Gönüllü Stajyeri",
       "sirket": "New Software Solutions",
       "yillar": "07.2021 - 02.2022",
       "aciklama": "Flutter kullanarak bir tablet uygulaması geliştirdim ve PlayStore da yayınladım."
+    },
+    {
+      "pozisyon": "Mobil Servisler Stajyeri",
+      "sirket": "Huawei",
+      "yillar": "06.2025 - 08.2025",
+      "aciklama": "ArkTS kullanarak HarmonyOS ekosistemi için uygulamalar geliştirdim."
     }
   ],
   "gonullu_deneyim": [

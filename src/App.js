@@ -1,13 +1,16 @@
 import React, { useState, Suspense } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
 import Navbar from './components/Navbar';
+import Privacy from './components/Privacy';
+
 // Lazy loading ile bileşenleri import ediyoruz
 const Home = React.lazy(() => import('./components/Home'));
 const About = React.lazy(() => import('./components/About'));
 const Projects = React.lazy(() => import('./components/Projects'));
 const Contact = React.lazy(() => import('./components/Contact'));
 
-function App() {
+function Portfolio() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const scrollToSection = (id) => {
@@ -41,6 +44,17 @@ function App() {
         </div>
       </main>
     </div>
+  );
+}
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Portfolio />} />
+        <Route path="/privacy" element={<Privacy />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

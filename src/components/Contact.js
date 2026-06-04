@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FaGithub, FaLinkedin, FaEnvelope, FaFileDownload, FaInstagram } from 'react-icons/fa';
 import { FaXTwitter } from 'react-icons/fa6';
@@ -108,9 +109,24 @@ const Contact = () => {
             })}
           </div>
         </motion.div>
+
+        {/* Privacy Policy Link */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.6 }}
+          className="mt-6 sm:mt-8 text-center"
+        >
+          <Link
+            to="/privacy"
+            className="text-xs text-gray-400 dark:text-gray-600 hover:text-gray-500 dark:hover:text-gray-400 transition-colors underline-offset-2 hover:underline"
+          >
+            Privacy Policy
+          </Link>
+        </motion.div>
       </div>
     </Layout>
   );
 };
 
-export default Contact; 
+export default Contact;
