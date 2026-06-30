@@ -329,7 +329,7 @@ const Projects = ({ setIsModalOpen }) => {
 
   const memoizedProjectCards = useMemo(() => 
     projectsData[currentSection].map((proje, index) => renderProjectCard(proje)),
-    [currentSection, projectsData, renderProjectCard]
+    [currentSection, renderProjectCard] 
   );
 
   return (
