@@ -1,8 +1,34 @@
-import React, { useState, useEffect, useRef, useMemo } from 'react';
+import React, { useState, useEffect, useRef, useMemo, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaAppStore, FaGooglePlay, FaGlobe, FaGithub, FaCode, FaTimes } from 'react-icons/fa';
 import projectsData from '../data/projects.json';
 import Layout from './Layout';
+
+const sections = [
+  { id: 'profesyonel', title: 'Profesyonel' },
+  { id: 'akademik', title: 'Akademik' },
+  { id: 'kisisel', title: 'Kişisel' }
+];
+
+const container = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2
+    }
+  }
+};
+
+const item = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0 }
+};
+
+const modalVariants = {
+  hidden: { opacity: 0, scale: 0.8 },
+  visible: { opacity: 1, scale: 1 }
+};
 
 const Projects = ({ setIsModalOpen }) => {
   const [currentSection, setCurrentSection] = useState('profesyonel');
@@ -33,33 +59,9 @@ const Projects = ({ setIsModalOpen }) => {
     setCurrentSection(sectionId);
   };
 
-  const sections = [
-    { id: 'profesyonel', title: 'Profesyonel' },
-    { id: 'akademik', title: 'Akademik' },
-    { id: 'kisisel', title: 'Kişisel' }
-  ];
+  // Data and variants moved outside the component
 
-  const container = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2
-      }
-    }
-  };
-
-  const item = {
-    hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0 }
-  };
-
-  const modalVariants = {
-    hidden: { opacity: 0, scale: 0.8 },
-    visible: { opacity: 1, scale: 1 }
-  };
-
-  const renderProjectCard = (proje) => (
+  const renderProjectCard = useCallback((proje) => (
     <motion.div
       variants={item}
       className="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-md flex flex-col h-full cursor-pointer"
@@ -170,7 +172,7 @@ const Projects = ({ setIsModalOpen }) => {
         </div>
       </div>
     </motion.div>
-  );
+  ), []);
 
   // Modal Bileşeni
   const ProjectModal = React.memo(({ project, onClose }) => {
