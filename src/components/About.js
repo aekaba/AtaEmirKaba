@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import aboutData from '../data/about.json';
-import Layout from './Layout';
 
 const About = () => {
   const [currentSection, setCurrentSection] = useState('education');
@@ -9,174 +8,165 @@ const About = () => {
   const sections = [
     { id: 'education', title: 'Eğitim' },
     { id: 'experience', title: 'Deneyim' },
-    { id: 'volunteer', title: 'Gönüllü Deneyim' },
+    { id: 'volunteer', title: 'Gönüllü' },
     { id: 'certificates', title: 'Sertifikalar' },
-    { id: 'skills', title: 'Yetenekler' }
+    { id: 'skills', title: 'Yetenekler' },
   ];
 
-  const item = {
-    hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } }
+  const fade = {
+    hidden: { opacity: 0, y: 10 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.22, ease: 'easeOut' } },
+    exit: { opacity: 0, y: -6, transition: { duration: 0.14 } },
   };
 
-  const pageTransition = {
-    hidden: { opacity: 0, x: -20 },
-    show: { 
-      opacity: 1, 
-      x: 0,
-      transition: { duration: 0.3, ease: "easeOut" }
-    },
-    exit: {
-      opacity: 0,
-      x: 20,
-      transition: { duration: 0.2 }
-    }
+  /* ── Row: left-aligned two-column layout ── */
+  const Row = ({ href, left, right }) => {
+    const base =
+      'flex flex-row items-start justify-between gap-[16px] py-[18px] border-b border-[var(--color-pure-black)] last:border-b-0 transition-opacity ' +
+      (href ? 'cursor-pointer hover:opacity-50' : '');
+    const inner = (
+      <>
+        <div className="flex-1 min-w-0">{left}</div>
+        {right && (
+          <span
+            className="shrink-0 text-right"
+            style={{ color: 'var(--color-concrete)', fontSize: '11px', letterSpacing: '0.04em', whiteSpace: 'nowrap', paddingTop: '2px' }}
+          >
+            {right}
+          </span>
+        )}
+      </>
+    );
+    return href ? (
+      <a href={href} target="_blank" rel="noopener noreferrer" className={base}>
+        {inner}
+      </a>
+    ) : (
+      <div className={base}>{inner}</div>
+    );
   };
 
-  const sortByDate = (a, b) => {
-    const dateA = a.yillar.split(' - ')[0];
-    const dateB = b.yillar.split(' - ')[0];
-    return dateB.localeCompare(dateA);
-  };
+  /* ── Experience — custom sort: Food Runners first, Huawei second, New Software third ── */
+  const sortedExperience = (() => {
+    const order = ['The Food Runners', 'Huawei', 'New Software Solutions'];
+    return [...aboutData.is_deneyimi].sort((a, b) => {
+      const ia = order.indexOf(a.sirket);
+      const ib = order.indexOf(b.sirket);
+      if (ia === -1 && ib === -1) return 0;
+      if (ia === -1) return 1;
+      if (ib === -1) return -1;
+      return ia - ib;
+    });
+  })();
 
   const renderContent = () => {
     switch (currentSection) {
       case 'education':
         return (
-          <motion.div 
-            variants={pageTransition}
-            initial="hidden"
-            animate="show"
-            exit="exit"
-            className="space-y-4"
-          >
-            <div className="grid grid-cols-1 gap-4 auto-rows-max">
-              {aboutData.egitim.sort(sortByDate).map((edu, index) => (
-                <motion.a 
-                  key={index}
+          <motion.div key="education" variants={fade} initial="hidden" animate="show" exit="exit">
+            {[...aboutData.egitim]
+              .sort((a, b) => b.yillar.localeCompare(a.yillar))
+              .map((edu, i) => (
+                <Row
+                  key={i}
                   href={edu.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  variants={item}
-                  className={`bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700 ${edu.link ? 'cursor-pointer hover:border-blue-500 dark:hover:border-blue-400 transition-colors' : ''}`}
-                >
-                  <h3 className="font-medium text-gray-900 dark:text-white">{edu.bolum}</h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">{edu.kurum}</p>
-                  <p className="text-sm text-gray-500 dark:text-gray-500">{edu.yillar}</p>
-                </motion.a>
+                  left={
+                    <>
+                      <p style={{ fontSize: '15px', color: 'var(--color-pure-black)', fontWeight: 400 }}>{edu.bolum}</p>
+                      <p style={{ fontSize: '11px', color: 'var(--color-concrete)', letterSpacing: '0.04em', marginTop: '3px' }}>{edu.kurum}</p>
+                    </>
+                  }
+                  right={edu.yillar}
+                />
               ))}
-            </div>
           </motion.div>
         );
 
       case 'experience':
         return (
-          <motion.div 
-            variants={pageTransition}
-            initial="hidden"
-            animate="show"
-            exit="exit"
-            className="space-y-4"
-          >
-            <div className="grid grid-cols-1 gap-4 auto-rows-max">
-              {aboutData.is_deneyimi.sort(sortByDate).map((exp, index) => (
-                <motion.div 
-                  key={index}
-                  variants={item}
-                  className="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700"
-                >
-                  <h3 className="font-medium text-gray-900 dark:text-white">{exp.pozisyon}</h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">{exp.sirket}</p>
-                  <p className="text-sm text-gray-500 dark:text-gray-500">{exp.yillar}</p>
-                  <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">{exp.aciklama}</p>
-                </motion.div>
-              ))}
-            </div>
+          <motion.div key="experience" variants={fade} initial="hidden" animate="show" exit="exit">
+            {sortedExperience.map((exp, i) => (
+              <Row
+                key={i}
+                left={
+                  <>
+                    <p style={{ fontSize: '15px', color: 'var(--color-pure-black)', fontWeight: 400 }}>{exp.pozisyon}</p>
+                    <p style={{ fontSize: '11px', color: 'var(--color-concrete)', letterSpacing: '0.04em', marginTop: '3px' }}>{exp.sirket}</p>
+                    <p style={{ fontSize: '13px', color: 'var(--color-concrete)', lineHeight: 1.5, marginTop: '8px' }}>{exp.aciklama}</p>
+                  </>
+                }
+                right={exp.yillar}
+              />
+            ))}
           </motion.div>
         );
 
       case 'volunteer':
         return (
-          <motion.div 
-            variants={pageTransition}
-            initial="hidden"
-            animate="show"
-            exit="exit"
-            className="space-y-4"
-          >
-            <div className="grid grid-cols-1 gap-4 auto-rows-max">
-              {aboutData.gonullu_deneyim.sort(sortByDate).map((exp, index) => (
-                <motion.div 
-                  key={index}
-                  variants={item}
-                  className="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700"
-                >
-                  <h3 className="font-medium text-gray-900 dark:text-white">{exp.pozisyon}</h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">{exp.kurum}</p>
-                  <p className="text-sm text-gray-500 dark:text-gray-500">{exp.yillar}</p>
-                  <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">{exp.aciklama}</p>
-                </motion.div>
-              ))}
-            </div>
+          <motion.div key="volunteer" variants={fade} initial="hidden" animate="show" exit="exit">
+            {aboutData.gonullu_deneyim.map((exp, i) => (
+              <Row
+                key={i}
+                left={
+                  <>
+                    <p style={{ fontSize: '15px', color: 'var(--color-pure-black)', fontWeight: 400 }}>{exp.pozisyon}</p>
+                    <p style={{ fontSize: '11px', color: 'var(--color-concrete)', letterSpacing: '0.04em', marginTop: '3px' }}>{exp.kurum}</p>
+                    <p style={{ fontSize: '13px', color: 'var(--color-concrete)', lineHeight: 1.5, marginTop: '8px' }}>{exp.aciklama}</p>
+                  </>
+                }
+                right={exp.yillar}
+              />
+            ))}
           </motion.div>
         );
 
       case 'certificates':
         return (
-          <motion.div 
-            variants={pageTransition}
-            initial="hidden"
-            animate="show"
-            exit="exit"
-            className="space-y-4"
-          >
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 auto-rows-max">
-              {aboutData.sertifikalar.sort((a, b) => b.yil - a.yil).map((cert, index) => (
-                <motion.a
-                  key={index}
-                  href={cert.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  variants={item}
-                  className={`bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700 ${cert.link ? 'cursor-pointer hover:border-blue-500 dark:hover:border-blue-400 transition-colors' : ''}`}
-                >
-                  <h3 className="font-medium text-gray-900 dark:text-white">{cert.ad}</h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">{cert.kurum}</p>
-                  <p className="text-sm text-gray-500 dark:text-gray-500">{cert.yil}</p>
-                </motion.a>
+          <motion.div key="certificates" variants={fade} initial="hidden" animate="show" exit="exit">
+            {[...aboutData.sertifikalar]
+              .sort((a, b) => b.yil - a.yil)
+              .map((cert, i) => (
+                <Row
+                  key={i}
+                  href={cert.link || undefined}
+                  left={
+                    <>
+                      {/* Sertifika adı önce, kurum sonra */}
+                      <p style={{ fontSize: '15px', color: 'var(--color-pure-black)', fontWeight: 400 }}>{cert.ad}</p>
+                      <p style={{ fontSize: '11px', color: 'var(--color-concrete)', letterSpacing: '0.04em', marginTop: '3px' }}>{cert.kurum}</p>
+                    </>
+                  }
+                  right={String(cert.yil)}
+                />
               ))}
-            </div>
           </motion.div>
         );
 
       case 'skills':
         return (
-          <motion.div 
-            variants={pageTransition}
-            initial="hidden"
-            animate="show"
-            exit="exit"
-            className="space-y-4"
-          >
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {Object.entries(aboutData.yetenekler).map(([category, skills]) => (
-                <motion.div key={category} variants={item} className="space-y-3">
-                  <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-                    {category.replace('_', ' ').replace('gelistirme', 'geliştirme')}
-                  </h3>
-                  <div className="flex flex-wrap gap-2">
-                    {skills.map((skill, index) => (
-                      <span 
-                        key={index} 
-                        className="px-3 py-1 text-sm bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full border border-gray-200 dark:border-gray-700"
-                      >
-                        {skill}
-                      </span>
-                    ))}
+          <motion.div key="skills" variants={fade} initial="hidden" animate="show" exit="exit">
+            {Object.entries(aboutData.yetenekler).map(([category, skills]) => (
+              <Row
+                key={category}
+                left={
+                  <div className="flex flex-col sm:flex-row sm:items-start gap-[16px]">
+                    <span
+                      className="uppercase shrink-0"
+                      style={{ color: 'var(--color-concrete)', fontSize: '11px', letterSpacing: '0.08em', width: '140px', paddingTop: '2px' }}
+                    >
+                      {category.replace(/_/g, ' ')}
+                    </span>
+                    <div className="flex flex-wrap gap-x-[16px] gap-y-[4px]">
+                      {skills.map((skill, idx) => (
+                        <span key={idx} style={{ fontSize: '15px', color: 'var(--color-pure-black)' }}>
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
                   </div>
-                </motion.div>
-              ))}
-            </div>
+                }
+              />
+            ))}
           </motion.div>
         );
 
@@ -186,60 +176,69 @@ const About = () => {
   };
 
   return (
-    <Layout title="Hakkımda">
-      {/* Alt Navigasyon */}
-      <div className="flex justify-center mb-3">
-        <div className="flex space-x-2 sm:space-x-3 bg-white dark:bg-gray-800 rounded-full p-1 shadow-md">
+    <section className="snap-start w-full bg-[var(--color-paper)] relative" style={{ minHeight: '100vh' }}>
+      <div className="w-full px-[26px]" style={{ paddingTop: '100px' }}>
+
+        {/* Header */}
+        <div style={{ marginBottom: '40px' }}>
+          <span
+            className="uppercase block"
+            style={{ color: 'var(--color-concrete)', fontSize: '11px', letterSpacing: '0.08em', marginBottom: '12px' }}
+          >
+            03 About
+          </span>
+          <h2
+            className="text-[var(--color-pure-black)] font-[400]"
+            style={{ fontSize: 'clamp(28px, 4vw, 52px)', lineHeight: 1.2, letterSpacing: '-0.03em', textAlign: 'left' }}
+          >
+            Hakkımda
+          </h2>
+        </div>
+
+        {/* Tab Strip */}
+        <div
+          className="flex gap-0"
+          style={{ borderBottom: '1px solid var(--color-pure-black)', marginBottom: 0 }}
+        >
           {sections.map((section) => (
             <button
               key={section.id}
               onClick={() => setCurrentSection(section.id)}
-              className={`px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium transition-colors
-                ${currentSection === section.id
-                  ? 'bg-gray-900 text-white dark:bg-white dark:text-gray-900'
-                  : 'text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white'
-                }`}
+              className="uppercase relative"
+              style={{
+                fontSize: '11px',
+                letterSpacing: '0.08em',
+                fontWeight: 400,
+                paddingBottom: '12px',
+                paddingRight: '24px',
+                color: currentSection === section.id ? 'var(--color-pure-black)' : 'var(--color-concrete)',
+                transition: 'color 0.2s',
+              }}
             >
               {section.title}
+              {currentSection === section.id && (
+                <span
+                  style={{
+                    position: 'absolute',
+                    bottom: '-1px',
+                    left: 0,
+                    width: '100%',
+                    height: '1px',
+                    background: 'var(--color-pure-black)',
+                  }}
+                />
+              )}
             </button>
           ))}
         </div>
+
+        {/* Content */}
+        <div style={{ paddingBottom: '80px' }}>
+          <AnimatePresence mode="wait">{renderContent()}</AnimatePresence>
+        </div>
       </div>
-
-      {/* Kaydırılabilir İçerik */}
-      <div className="relative h-[calc(100vh-16rem)] overflow-y-auto px-2 sm:px-4 pb-6 custom-scrollbar">
-        <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-transparent via-transparent to-gray-50 dark:to-gray-900 opacity-50" />
-        <AnimatePresence mode="wait">
-          {renderContent()}
-        </AnimatePresence>
-      </div>
-
-      <style jsx global>{`
-        .custom-scrollbar::-webkit-scrollbar {
-          width: 6px;
-        }
-        
-        .custom-scrollbar::-webkit-scrollbar-track {
-          background: transparent;
-        }
-        
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-          background-color: rgba(156, 163, 175, 0.5);
-          border-radius: 20px;
-        }
-
-        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-          background-color: rgba(156, 163, 175, 0.7);
-        }
-
-        @media (max-width: 640px) {
-          .custom-scrollbar::-webkit-scrollbar {
-            width: 4px;
-          }
-        }
-      `}</style>
-    </Layout>
+    </section>
   );
 };
 
-export default About; 
+export default About;

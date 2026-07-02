@@ -1,125 +1,131 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useEffect, useState, useRef, useCallback } from 'react';
 import { Helmet } from 'react-helmet';
 
 const Home = () => {
-  const schemaData = {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Ata Emir Kaba",
-    "alternateName": ["AEK", "AE_Kaba", "AEKaba"],
-    "jobTitle": ["Yazılım Mühendisi", "Mobil Uygulama Geliştirici"],
-    "url": "https://www.ataemirkaba.com",
-    "image": "https://ataemirkaba-portfolio.s3.eu-north-1.amazonaws.com/images/jpg/aek.JPG",
-    "description": "Beykent Üniversitesi Yazılım Mühendisliği öğrencisi. Flutter, Swift ve React ile mobil uygulama geliştirme uzmanı.",
-    "knowsAbout": ["Flutter", "Swift", "React", "Mobile App Development", "iOS Development"],
-    "alumniOf": {
-      "@type": "CollegeOrUniversity",
-      "name": "Beykent Üniversitesi"
+  const [mounted, setMounted] = useState(false);
+  const [fontSize, setFontSize] = useState(120);
+  const containerRef = useRef(null);
+  const textRef = useRef(null);
+
+  useEffect(() => {
+    const t = setTimeout(() => setMounted(true), 60);
+    return () => clearTimeout(t);
+  }, []);
+
+  /* Dynamically fit "ATA EMIR KABA" to exactly fill the container width */
+  const fitText = useCallback(() => {
+    const container = containerRef.current;
+    const text = textRef.current;
+    if (!container || !text) return;
+    const containerWidth = container.offsetWidth;
+    let lo = 10, hi = 700;
+    while (hi - lo > 0.5) {
+      const mid = (lo + hi) / 2;
+      text.style.fontSize = mid + 'px';
+      if (text.scrollWidth <= containerWidth) lo = mid;
+      else hi = mid;
     }
-  };
+    setFontSize(Math.floor(lo));
+  }, []);
 
-  // Performans için animasyon değerlerini sabitleyelim
-  const fadeInUpVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 }
-  };
+  useEffect(() => {
+    fitText();
+    const ro = new ResizeObserver(fitText);
+    if (containerRef.current) ro.observe(containerRef.current);
+    return () => ro.disconnect();
+  }, [fitText]);
 
-  const fadeInRightVariants = {
-    hidden: { opacity: 0, x: 20 },
-    visible: { opacity: 1, x: 0 }
+  const schemaData = {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: 'Ata Emir Kaba',
+    jobTitle: 'Yazılım Mühendisi',
   };
 
   return (
     <>
       <Helmet>
-        <script type="application/ld+json">
-          {JSON.stringify(schemaData)}
-        </script>
-        <link rel="preload" as="image" href="https://ataemirkaba-portfolio.s3.eu-north-1.amazonaws.com/images/jpg/aek.JPG" />
+        <script type="application/ld+json">{JSON.stringify(schemaData)}</script>
       </Helmet>
-      
-      <section 
-        id="home" 
-        className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 px-3 sm:px-6 lg:px-8 py-6 sm:py-12"
-        role="main"
-        aria-label="Ana Sayfa"
+
+      {/* ── Hero Section ── */}
+      <section
+        className="snap-start h-screen w-full bg-[var(--color-paper)] relative overflow-hidden flex flex-col"
+        style={{ justifyContent: 'space-between' }}
       >
-        <div className="max-w-6xl mx-auto w-full">
-          <div className="flex flex-col lg:flex-row items-center justify-between gap-6 lg:gap-12">
-            {/* Sol taraf - Metin içeriği */}
-            <motion.div
-              variants={fadeInUpVariants}
-              initial="hidden"
-              animate="visible"
-              transition={{ duration: 0.8 }}
-              className="flex-1 text-left w-full lg:w-3/5 px-0 sm:px-4"
+        {/* Description block — upper right, fades in */}
+        <div
+          className="w-full flex justify-end px-[26px]"
+          style={{ paddingTop: '90px' }}
+        >
+          <div
+            className="md:w-5/12"
+            style={{
+              opacity: mounted ? 1 : 0,
+              transform: mounted ? 'translateY(0)' : 'translateY(14px)',
+              transition: 'opacity 0.7s ease 0.15s, transform 0.7s ease 0.15s',
+            }}
+          >
+            <p
+              className="text-[var(--color-concrete)]"
+              style={{ fontSize: '18px', lineHeight: 1.5, letterSpacing: '-0.02em' }}
             >
-              <h1 
-  className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 text-gray-900 dark:text-white"
-  tabIndex="0"
->
-  Merhaba, ben Ata Emir Kaba!
-</h1>
+              <strong className="text-[var(--color-pure-black)] font-[400]">
+                Ata Emir Kaba
+              </strong>{' '}
+              is a Software Engineer &amp; Mobile App Developer specializing in
+              Flutter, Swift, React and HarmonyOS Next.
+            </p>
+          </div>
+        </div>
 
-<div className="prose prose-sm sm:prose dark:prose-invert max-w-none">
-  <p 
-    className="text-sm sm:text-base md:text-lg leading-relaxed sm:leading-relaxed text-gray-800 dark:text-gray-100 mb-4 sm:mb-6"
-    tabIndex="0"
-  >
-    Beykent Üniversitesi Yazılım Mühendisliği bölümünden 3.11 GPA ve Onur Belgesi ile mezun oldum. 
-    Üniversite sürecimde freelance projelerle mobil uygulama geliştirme alanında kendimi geliştirdim 
-    ve gerçek kullanıcıya dokunan ürünler üretme fırsatı buldum.
-  </p>
+        {/* Massive full-width fitted wordmark — slides up on load */}
+        <div
+          ref={containerRef}
+          className="w-full overflow-hidden leading-none"
+          style={{
+            opacity: mounted ? 1 : 0,
+            transform: mounted ? 'translateY(0)' : 'translateY(40px)',
+            transition:
+              'opacity 0.85s ease 0.05s, transform 0.85s cubic-bezier(0.16,1,0.3,1) 0.05s',
+          }}
+        >
+          <h1
+            ref={textRef}
+            className="text-[var(--color-pure-black)] uppercase whitespace-nowrap select-none block"
+            style={{
+              fontSize: `${fontSize}px`,
+              lineHeight: 0.82,
+              letterSpacing: '-0.04em',
+            }}
+          >
+            ATA EMIR KABA
+          </h1>
+        </div>
+      </section>
 
-  <p 
-    className="text-sm sm:text-base md:text-lg leading-relaxed sm:leading-relaxed text-gray-800 dark:text-gray-100 mb-4 sm:mb-6"
-    tabIndex="0"
-  >
-    Huawei MSDC bünyesinde Mobile Developer Intern olarak gerçekleştirdiğim staj sürecinde, HarmonyOS Next 
-    platformunda ArkTS kullanarak özellikle giyilebilir cihazlar için uygulamalar geliştirdim. Bu süreç, farklı 
-    teknolojilere hızlı adapte olma ve ekip içinde üretim yapma konusunda önemli bir deneyim kazandırdı.
-  </p>
-
-  <p 
-    className="text-sm sm:text-base md:text-lg leading-relaxed sm:leading-relaxed text-gray-800 dark:text-gray-100 mb-4 sm:mb-6"
-    tabIndex="0"
-  >
-    Şu anda Flutter ile cross-platform uygulamalar geliştiriyor, aynı zamanda Swift & SwiftUI ile native iOS 
-    geliştirme alanında kendimi ileriye taşımaya devam ediyorum.
-  </p>
-
-  <p 
-    className="text-sm sm:text-base md:text-lg leading-relaxed sm:leading-relaxed text-gray-800 dark:text-gray-100"
-    tabIndex="0"
-  >
-    Bu portfolyo sitesinde projelerimi, CV'mi ve zamanla paylaşacağım teknik içerikleri bulabilirsiniz.
-  </p>
-</div>
-            </motion.div>
-
-            {/* Sağ taraf - Profil resmi */}
-            <motion.div
-              variants={fadeInRightVariants}
-              initial="hidden"
-              animate="visible"
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="w-full lg:w-2/5 max-w-[180px] sm:max-w-[220px] md:max-w-[260px] lg:max-w-[300px] mx-auto lg:mx-0 mt-4 lg:mt-0"
-              role="img"
-              aria-label="Ata Emir Kaba'nın profil fotoğrafı"
+      {/* ── Dark Intro Band ── */}
+      <section className="snap-start h-screen w-full bg-[var(--color-onyx)] flex items-center relative">
+        <div className="w-full px-[26px]">
+          <h2
+            className="text-[var(--color-paper)] font-[400]"
+            style={{
+              fontSize: 'clamp(22px, 3.2vw, 48px)',
+              lineHeight: 1.35,
+              letterSpacing: '-0.02em',
+              maxWidth: '820px',
+            }}
+          >
+            Beykent Üniversitesi Yazılım Mühendisliği bölümünden 3.11 GPA ve
+            Onur Belgesi ile mezun oldum.
+          </h2>
+          <div className="mt-[53px]">
+            <span
+              className="text-[var(--color-concrete)] uppercase"
+              style={{ fontSize: '11px', letterSpacing: '0.08em' }}
             >
-              <div className="relative aspect-square">
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl sm:rounded-2xl transform rotate-6 scale-105 opacity-20"></div>
-                <img
-                  src="https://ataemirkaba-portfolio.s3.eu-north-1.amazonaws.com/images/jpg/aek.JPG"
-                  alt="Ata Emir Kaba"
-                  className="relative rounded-xl sm:rounded-2xl shadow-xl w-full h-full object-cover"
-                  loading="lazy"
-                  width="300"
-                  height="300"
-                />
-              </div>
-            </motion.div>
+              01 Background
+            </span>
           </div>
         </div>
       </section>
@@ -127,5 +133,4 @@ const Home = () => {
   );
 };
 
-// Performans için bileşeni memoize edelim
-export default React.memo(Home); 
+export default React.memo(Home);
