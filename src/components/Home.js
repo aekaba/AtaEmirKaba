@@ -118,7 +118,7 @@ const Home = () => {
       </section>
 
       {/* ── Dark Intro Band ── */}
-      <section className="snap-start h-screen w-full bg-[var(--color-onyx)] flex items-center relative">
+      <section id="dark-band" className="snap-start h-screen w-full bg-[var(--color-onyx)] flex items-center relative">
         <div className="w-full px-[26px]">
           <h2
             className="text-[var(--color-paper)] font-[400]"

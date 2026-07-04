@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useLang } from '../context/LanguageContext';
 import { t } from '../translations';
 
-const Navbar = ({ onNavClick, hidden }) => {
+const Navbar = ({ onNavClick, hidden, isDark }) => {
   const [time, setTime] = useState(new Date());
   const [menuOpen, setMenuOpen] = useState(false);
   const { lang, toggleLang } = useLang();
@@ -34,7 +34,12 @@ const Navbar = ({ onNavClick, hidden }) => {
     if (onNavClick) onNavClick(id);
   };
 
-  const textColor = menuOpen ? '#f5f3ee' : 'var(--color-pure-black)';
+  // When menu is open → paper; when dark section visible → paper; else black
+  const textColor = menuOpen
+    ? 'var(--color-paper)'
+    : isDark
+    ? 'var(--color-paper)'
+    : 'var(--color-pure-black)';
 
   return (
     <>
