@@ -1,15 +1,19 @@
 import React, { useEffect, useState, useRef, useCallback } from 'react';
 import { Helmet } from 'react-helmet';
+import { useLang } from '../context/LanguageContext';
+import { t } from '../translations';
 
 const Home = () => {
   const [mounted, setMounted] = useState(false);
   const [fontSize, setFontSize] = useState(120);
   const containerRef = useRef(null);
   const textRef = useRef(null);
+  const { lang } = useLang();
+  const tx = t[lang];
 
   useEffect(() => {
-    const t = setTimeout(() => setMounted(true), 60);
-    return () => clearTimeout(t);
+    const timer = setTimeout(() => setMounted(true), 60);
+    return () => clearTimeout(timer);
   }, []);
 
   /* Dynamically fit "ATA EMIR KABA" exactly to container width */
@@ -49,7 +53,7 @@ const Home = () => {
     '@context': 'https://schema.org',
     '@type': 'Person',
     name: 'Ata Emir Kaba',
-    jobTitle: 'Yazılım Mühendisi',
+    jobTitle: 'Software Engineer',
   };
 
   return (
@@ -83,8 +87,7 @@ const Home = () => {
               <strong className="text-[var(--color-pure-black)] font-[400]">
                 Ata Emir Kaba
               </strong>{' '}
-              is a Software Engineer &amp; Mobile App Developer specializing in
-              Flutter, Swift, React and HarmonyOS Next.
+              {tx.hero.intro}
             </p>
           </div>
         </div>
@@ -120,21 +123,20 @@ const Home = () => {
           <h2
             className="text-[var(--color-paper)] font-[400]"
             style={{
-              fontSize: 'clamp(22px, 3.2vw, 48px)',
-              lineHeight: 1.35,
+              fontSize: 'clamp(18px, 2.6vw, 42px)',
+              lineHeight: 1.45,
               letterSpacing: '-0.02em',
-              maxWidth: '820px',
+              maxWidth: '860px',
             }}
           >
-            Beykent Üniversitesi Yazılım Mühendisliği bölümünden 3.11 GPA ve
-            Onur Belgesi ile mezun oldum.
+            {tx.background.text}
           </h2>
           <div className="mt-[53px]">
             <span
               className="text-[var(--color-concrete)] uppercase"
               style={{ fontSize: '11px', letterSpacing: '0.08em' }}
             >
-              01 Background
+              {tx.background.label}
             </span>
           </div>
         </div>

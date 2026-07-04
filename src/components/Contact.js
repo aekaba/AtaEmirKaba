@@ -1,7 +1,13 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import contactData from '../data/contact.json';
+import { useLang } from '../context/LanguageContext';
+import { t } from '../translations';
 
 const Contact = () => {
+  const { lang } = useLang();
+  const tx = t[lang];
+
   return (
     <section
       className="snap-start w-full bg-[var(--color-paper)] flex flex-col"
@@ -27,7 +33,7 @@ const Contact = () => {
         </div>
       </div>
 
-      {/* ── Footer — NCDA style ── */}
+      {/* ── NCDA-style footer ── */}
       <footer
         style={{
           borderTop: '1px solid #d0d0d0',
@@ -62,42 +68,44 @@ const Contact = () => {
               style={{ color: 'var(--color-concrete)', fontSize: '11px', letterSpacing: '0.04em', lineHeight: 1.7 }}
             >
               <a
-                href="mailto:hi@ncf.studio"
-                className="hover:text-[var(--color-pure-black)] transition-colors"
-                style={{ color: 'var(--color-concrete)' }}
-              >
-                hi@ncf.studio
-              </a>
-              <br />
-              <a
                 href={`mailto:${contactData.email}`}
                 className="hover:text-[var(--color-pure-black)] transition-colors"
                 style={{ color: 'var(--color-concrete)' }}
               >
                 {contactData.email}
               </a>
+              <br />
+              {contactData.sosyal_medya.map((platform) => (
+                <React.Fragment key={platform.platform}>
+                  <a
+                    href={platform.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-[var(--color-pure-black)] transition-colors"
+                    style={{ color: 'var(--color-concrete)' }}
+                  >
+                    {platform.platform}
+                  </a>
+                  <br />
+                </React.Fragment>
+              ))}
             </p>
           </div>
 
-          {/* Col 4: Social + copyright */}
+          {/* Col 4: Privacy + copyright */}
           <div className="text-right">
             <div
               className="flex flex-col items-end gap-[4px]"
               style={{ color: 'var(--color-concrete)', fontSize: '11px', letterSpacing: '0.04em', lineHeight: 1.7 }}
             >
-              {contactData.sosyal_medya.map((platform) => (
-                <a
-                  key={platform.platform}
-                  href={platform.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-[var(--color-pure-black)] transition-colors uppercase"
-                  style={{ color: 'var(--color-concrete)', fontSize: '11px', letterSpacing: '0.08em' }}
-                >
-                  {platform.platform}
-                </a>
-              ))}
-              <span style={{ marginTop: '4px' }}>© 2026 NCF Studio</span>
+              <Link
+                to="/privacy"
+                className="hover:text-[var(--color-pure-black)] transition-colors"
+                style={{ color: 'var(--color-concrete)' }}
+              >
+                {tx.contact.privacy}
+              </Link>
+              <span style={{ marginTop: '4px' }}>{tx.contact.copyright}</span>
               <span>All rights reserved.</span>
             </div>
           </div>

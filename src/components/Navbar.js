@@ -1,8 +1,12 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useLang } from '../context/LanguageContext';
+import { t } from '../translations';
 
 const Navbar = ({ onNavClick, hidden }) => {
   const [time, setTime] = useState(new Date());
   const [menuOpen, setMenuOpen] = useState(false);
+  const { lang, toggleLang } = useLang();
+  const tx = t[lang];
 
   useEffect(() => {
     const timer = setInterval(() => setTime(new Date()), 1000);
@@ -19,10 +23,10 @@ const Navbar = ({ onNavClick, hidden }) => {
     });
 
   const navItems = [
-    { id: 'home', label: 'Home' },
-    { id: 'about', label: 'About' },
-    { id: 'projects', label: 'Projects' },
-    { id: 'contact', label: 'Contact' },
+    { id: 'home', label: tx.nav.home },
+    { id: 'about', label: tx.nav.about },
+    { id: 'projects', label: tx.nav.projects },
+    { id: 'contact', label: tx.nav.contact },
   ];
 
   const handleNavClick = (id) => {
@@ -34,7 +38,7 @@ const Navbar = ({ onNavClick, hidden }) => {
 
   return (
     <>
-      {/* ── Navbar strip ── always z-50, text color flips with menu state */}
+      {/* ── Navbar strip ── */}
       <nav
         style={{
           position: 'fixed',
@@ -69,30 +73,59 @@ const Navbar = ({ onNavClick, hidden }) => {
           <span>{formatTime(time, 'America/Los_Angeles')} LA</span>
         </div>
 
-        {/* Menu / Close button */}
-        <button
-          onClick={() => setMenuOpen((prev) => !prev)}
-          aria-label="Toggle menu"
-          style={{
-            background: 'none',
-            border: 'none',
-            cursor: 'pointer',
-            padding: 0,
-            fontSize: '20px',
-            fontWeight: 400,
-            letterSpacing: '0.01em',
-            color: textColor,
-            transition: 'color 0.25s, opacity 0.2s',
-            pointerEvents: 'auto',
-          }}
-          onMouseEnter={e => e.currentTarget.style.opacity = '0.5'}
-          onMouseLeave={e => e.currentTarget.style.opacity = '1'}
-        >
-          {menuOpen ? 'Close' : 'Menu'}
-        </button>
+        {/* Right side: Lang toggle + Menu */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '24px', pointerEvents: 'auto' }}>
+          {/* Language Toggle */}
+          <button
+            onClick={toggleLang}
+            aria-label="Toggle language"
+            style={{
+              background: 'none',
+              border: 'none',
+              cursor: 'pointer',
+              padding: 0,
+              fontSize: '13px',
+              fontWeight: 400,
+              letterSpacing: '0.08em',
+              textTransform: 'uppercase',
+              color: textColor,
+              transition: 'color 0.25s, opacity 0.2s',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '6px',
+            }}
+            onMouseEnter={e => e.currentTarget.style.opacity = '0.5'}
+            onMouseLeave={e => e.currentTarget.style.opacity = '1'}
+          >
+            <span style={{ opacity: lang === 'en' ? 1 : 0.4 }}>EN</span>
+            <span style={{ opacity: 0.3 }}>/</span>
+            <span style={{ opacity: lang === 'tr' ? 1 : 0.4 }}>TR</span>
+          </button>
+
+          {/* Menu / Close button */}
+          <button
+            onClick={() => setMenuOpen((prev) => !prev)}
+            aria-label="Toggle menu"
+            style={{
+              background: 'none',
+              border: 'none',
+              cursor: 'pointer',
+              padding: 0,
+              fontSize: '20px',
+              fontWeight: 400,
+              letterSpacing: '0.01em',
+              color: textColor,
+              transition: 'color 0.25s, opacity 0.2s',
+            }}
+            onMouseEnter={e => e.currentTarget.style.opacity = '0.5'}
+            onMouseLeave={e => e.currentTarget.style.opacity = '1'}
+          >
+            {menuOpen ? 'Close' : 'Menu'}
+          </button>
+        </div>
       </nav>
 
-      {/* ── Full-screen overlay menu (z-40, below nav) ── */}
+      {/* ── Full-screen overlay menu ── */}
       <div
         style={{
           position: 'fixed',
@@ -109,7 +142,7 @@ const Navbar = ({ onNavClick, hidden }) => {
         }}
       >
         <nav style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-          {navItems.map((item, i) => (
+          {navItems.map((item) => (
             <button
               key={item.id}
               onClick={() => handleNavClick(item.id)}
@@ -148,10 +181,10 @@ const Navbar = ({ onNavClick, hidden }) => {
           }}
         >
           <span style={{ color: 'var(--color-concrete)', fontSize: '11px', letterSpacing: '0.08em' }}>
-            NCF STUDIO
+            ATA EMIR KABA
           </span>
           <span style={{ color: 'var(--color-concrete)', fontSize: '11px', letterSpacing: '0.08em' }}>
-            © 2026 NFC Studio
+            © 2026
           </span>
         </div>
       </div>

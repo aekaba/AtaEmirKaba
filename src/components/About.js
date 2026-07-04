@@ -1,16 +1,20 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import aboutData from '../data/about.json';
+import { useLang } from '../context/LanguageContext';
+import { t } from '../translations';
 
 const About = () => {
+  const { lang } = useLang();
+  const tx = t[lang];
   const [currentSection, setCurrentSection] = useState('education');
 
   const sections = [
-    { id: 'education', title: 'Eğitim' },
-    { id: 'experience', title: 'Deneyim' },
-    { id: 'volunteer', title: 'Gönüllü' },
-    { id: 'certificates', title: 'Sertifikalar' },
-    { id: 'skills', title: 'Yetenekler' },
+    { id: 'education', title: tx.about.tabs.education },
+    { id: 'experience', title: tx.about.tabs.experience },
+    { id: 'volunteer', title: tx.about.tabs.volunteer },
+    { id: 'certificates', title: tx.about.tabs.certificates },
+    { id: 'skills', title: tx.about.tabs.skills },
   ];
 
   const fade = {
@@ -131,7 +135,6 @@ const About = () => {
                   href={cert.link || undefined}
                   left={
                     <>
-                      {/* Sertifika adı önce, kurum sonra */}
                       <p style={{ fontSize: '15px', color: 'var(--color-pure-black)', fontWeight: 400 }}>{cert.ad}</p>
                       <p style={{ fontSize: '11px', color: 'var(--color-concrete)', letterSpacing: '0.04em', marginTop: '3px' }}>{cert.kurum}</p>
                     </>
@@ -185,13 +188,13 @@ const About = () => {
             className="uppercase block"
             style={{ color: 'var(--color-concrete)', fontSize: '11px', letterSpacing: '0.08em', marginBottom: '12px' }}
           >
-            03 About
+            {tx.about.label}
           </span>
           <h2
             className="text-[var(--color-pure-black)] font-[400]"
             style={{ fontSize: 'clamp(28px, 4vw, 52px)', lineHeight: 1.2, letterSpacing: '-0.03em', textAlign: 'left' }}
           >
-            Hakkımda
+            {tx.about.heading}
           </h2>
         </div>
 
