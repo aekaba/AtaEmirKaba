@@ -12,27 +12,37 @@ const Home = () => {
     return () => clearTimeout(t);
   }, []);
 
-  /* Dynamically fit "ATA EMIR KABA" to exactly fill the container width */
+  /* Dynamically fit "ATA EMIR KABA" exactly to container width */
   const fitText = useCallback(() => {
     const container = containerRef.current;
     const text = textRef.current;
     if (!container || !text) return;
+
+    // Read phase — no layout change yet
     const containerWidth = container.offsetWidth;
-    let lo = 10, hi = 700;
-    while (hi - lo > 0.5) {
-      const mid = (lo + hi) / 2;
-      text.style.fontSize = mid + 'px';
-      if (text.scrollWidth <= containerWidth) lo = mid;
-      else hi = mid;
-    }
-    setFontSize(Math.floor(lo));
+
+    // Write phase inside rAF so it doesn't conflict with ResizeObserver's frame
+    requestAnimationFrame(() => {
+      let lo = 10, hi = 700;
+      while (hi - lo > 0.5) {
+        const mid = (lo + hi) / 2;
+        text.style.fontSize = mid + 'px';
+        if (text.scrollWidth <= containerWidth) lo = mid;
+        else hi = mid;
+      }
+      setFontSize(Math.floor(lo));
+    });
   }, []);
 
   useEffect(() => {
     fitText();
-    const ro = new ResizeObserver(fitText);
+    let rafId;
+    const ro = new ResizeObserver(() => {
+      cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(fitText);
+    });
     if (containerRef.current) ro.observe(containerRef.current);
-    return () => ro.disconnect();
+    return () => { ro.disconnect(); cancelAnimationFrame(rafId); };
   }, [fitText]);
 
   const schemaData = {
@@ -68,7 +78,7 @@ const Home = () => {
           >
             <p
               className="text-[var(--color-concrete)]"
-              style={{ fontSize: '18px', lineHeight: 1.5, letterSpacing: '-0.02em' }}
+              style={{ fontSize: '20px', lineHeight: 1.5, letterSpacing: '-0.02em' }}
             >
               <strong className="text-[var(--color-pure-black)] font-[400]">
                 Ata Emir Kaba
