@@ -93,7 +93,7 @@ export const t = {
 
     /* ── Projects ── */
     projects: {
-      label: '03 Seçki',
+      label: '03 Seçilmiş Projeler',
       heading: 'Projeler',
       viewProject: 'Projeyi Gör',
       techLabels: {
