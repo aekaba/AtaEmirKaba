@@ -22,7 +22,7 @@ export const t = {
 
     /* ── Projects ── */
     projects: {
-      label: '02 Selected Work',
+      label: '03 Selected Work',
       heading: 'Projects',
       viewProject: 'View Project',
       techLabels: {
@@ -50,7 +50,7 @@ export const t = {
 
     /* ── About ── */
     about: {
-      label: '03 About',
+      label: '02 About',
       heading: 'About',
       tabs: {
         education: 'Education',
@@ -87,13 +87,13 @@ export const t = {
 
     /* ── Home background band ── */
     background: {
-      label: '01 Hakkımda',
+      label: '01 Background',
       text: 'Yazılım Mühendisi, mobil uygulama geliştirici ve araştırmacıyım. Flutter, Swift ve ArkTS kullanarak iOS, Android ve HarmonyOS Next için uygulamalar geliştiriyorum. TÜBİTAK destekli yapay zeka araştırmaları yürütüyor, akademik çalışmalarımı gerçek ürünlere dönüştürüyorum.',
     },
 
     /* ── Projects ── */
     projects: {
-      label: '02 Seçki',
+      label: '03 Seçki',
       heading: 'Projeler',
       viewProject: 'Projeyi Gör',
       techLabels: {
@@ -121,7 +121,7 @@ export const t = {
 
     /* ── About ── */
     about: {
-      label: '03 Hakkımda',
+      label: '02 About',
       heading: 'Hakkımda',
       tabs: {
         education: 'Eğitim',
