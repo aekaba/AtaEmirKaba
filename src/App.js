@@ -7,7 +7,9 @@ import Privacy from './components/Privacy';
 const Home = React.lazy(() => import('./components/Home'));
 const About = React.lazy(() => import('./components/About'));
 const Projects = React.lazy(() => import('./components/Projects'));
+const Blog = React.lazy(() => import('./components/Blog'));
 const Contact = React.lazy(() => import('./components/Contact'));
+
 
 function Portfolio() {
   const containerRef = useRef(null);
@@ -82,7 +84,9 @@ function Portfolio() {
             <div id="home"><Home /></div>
             <div id="about"><About /></div>
             <div id="projects"><Projects /></div>
+            <div id="blog" className="snap-start"><Blog /></div>
             <div id="contact" className="snap-start"><Contact /></div>
+
           </Suspense>
         </div>
       </main>

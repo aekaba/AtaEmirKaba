@@ -4,7 +4,7 @@ import { useLang } from '../context/LanguageContext';
 import { t } from '../translations';
 
 const getLinkHref = (linkler) =>
-  linkler?.appstore || linkler?.playstore || linkler?.web || linkler?.github || null;
+  linkler?.appstore || linkler?.playstore || linkler?.website || linkler?.web || linkler?.github || null;
 
 /* ── Single project card ── */
 const ProjectCard = ({ proje, index, tx }) => {
@@ -110,7 +110,7 @@ const ProjectCard = ({ proje, index, tx }) => {
           <a href={href} target="_blank" rel="noopener noreferrer"
             className="hover:opacity-50 transition-opacity inline-block"
             style={{ color: 'var(--color-pure-black)', fontSize: '13px', paddingBottom: '3px', borderBottom: '1px solid var(--color-concrete)' }}>
-            {proje.linkler?.web ? tx.projects.viewProject : 'GitHub'} ↗
+            {proje.linkler?.web || proje.linkler?.website ? tx.projects.viewProject : 'GitHub'} ↗
           </a>
         )}
       </div>
@@ -123,7 +123,8 @@ const Projects = () => {
   const tx = t[lang];
   const [paused, setPaused] = React.useState(false);
 
-  const allProjects = projectsData.projeler;
+  const allProjects = projectsData.projeler || [];
+
   // Duplicate for seamless infinite loop (translateX -50% = one full set)
   const loopProjects = [...allProjects, ...allProjects];
 

@@ -5,6 +5,7 @@ export const t = {
       home: 'Home',
       about: 'About',
       projects: 'Projects',
+      blog: 'Blog',
       contact: 'Contact',
     },
 
@@ -61,8 +62,19 @@ export const t = {
       },
     },
 
+    /* ── Blog ── */
+    blog: {
+      label: '04 Writing',
+      heading: 'Blog',
+      readMore: 'Read on Medium ↗',
+      loading: 'Loading articles…',
+      error: 'Could not load articles.',
+      noArticles: 'No articles yet.',
+    },
+
     /* ── Contact ── */
     contact: {
+      label: '05 Contact',
       email: 'Email',
       privacy: 'Privacy Policy',
       copyright: '© 2026 All rights reserved.',
@@ -76,6 +88,7 @@ export const t = {
       home: 'Ana Sayfa',
       about: 'Hakkımda',
       projects: 'Projeler',
+      blog: 'Blog',
       contact: 'İletişim',
     },
 
@@ -132,8 +145,19 @@ export const t = {
       },
     },
 
+    /* ── Blog ── */
+    blog: {
+      label: '04 Yazılar',
+      heading: 'Blog',
+      readMore: "Medium’da Oku ↗",
+      loading: 'Yazılar yükleniyor…',
+      error: 'Yazılar yüklenemedi.',
+      noArticles: 'Henüz yazı yok.',
+    },
+
     /* ── Contact ── */
     contact: {
+      label: '05 İletişim',
       email: 'E-posta',
       privacy: 'Gizlilik Politikası',
       copyright: '© 2026 Tüm hakları saklıdır.',

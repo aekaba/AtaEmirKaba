@@ -26,6 +26,7 @@ const Navbar = ({ onNavClick, hidden, isDark }) => {
     { id: 'home', label: tx.nav.home },
     { id: 'about', label: tx.nav.about },
     { id: 'projects', label: tx.nav.projects },
+    { id: 'blog', label: tx.nav.blog },
     { id: 'contact', label: tx.nav.contact },
   ];
 
