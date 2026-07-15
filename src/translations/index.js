@@ -76,8 +76,11 @@ export const t = {
     contact: {
       label: '05 Contact',
       email: 'Email',
+      studio: 'NFC Studio',
+      tagline: 'Ata Emir Kaba',
+      location: 'IST — LA Based · Software Engineer',
       privacy: 'Privacy Policy',
-      copyright: '© 2026 All rights reserved.',
+      copyright: '© 2026 NFC Studio. All rights reserved.',
     },
   },
 
@@ -159,8 +162,11 @@ export const t = {
     contact: {
       label: '05 İletişim',
       email: 'E-posta',
+      studio: 'NFC Studio',
+      tagline: 'Ata Emir Kaba',
+      location: 'İST — LA Merkezli · Yazılım Mühendisi',
       privacy: 'Gizlilik Politikası',
-      copyright: '© 2026 Tüm hakları saklıdır.',
+      copyright: '© 2026 NFC Studio. Tüm hakları saklıdır.',
     },
   },
 };

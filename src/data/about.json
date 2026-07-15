@@ -1,13 +1,13 @@
 {
   "egitim": [
     {
-      "bolum": "Yazılım Mühendisliği",
+      "bolum": { "tr": "Yazılım Mühendisliği", "en": "Software Engineering" },
       "kurum": "Beykent Üniversitesi",
       "yillar": "2021 - 2025",
       "link": "https://www.beykent.edu.tr/"
     },
     {
-      "bolum": "Bilişim / Veritabanı Programcılığı",
+      "bolum": { "tr": "Bilişim / Veritabanı Programcılığı", "en": "IT / Database Programming" },
       "kurum": "Haydar Akın Teknik Lisesi",
       "yillar": "2017 - 2021",
       "link": "https://haydarakin.meb.k12.tr/"
@@ -15,84 +15,107 @@
   ],
   "sertifikalar": [
     {
-      "ad": "Flutter Fest Başarı Sertifikası",
+      "ad": { "tr": "Flutter Fest Başarı Sertifikası", "en": "Flutter Fest Achievement Certificate" },
       "kurum": "Google Developer Students Club",
       "yil": 2022,
       "link": "https://verified.cv/en/verify/97494403400894"
     },
     {
-      "ad": "Flutter Fest Katılım Sertifikası",
+      "ad": { "tr": "Flutter Fest Katılım Sertifikası", "en": "Flutter Fest Participation Certificate" },
       "kurum": "Google Developer Students Club",
       "yil": 2022
     },
     {
-      "ad": "Versiyon Kontrol Sistemleri: Git ve GitHub",
+      "ad": { "tr": "Versiyon Kontrol Sistemleri: Git ve GitHub", "en": "Version Control Systems: Git & GitHub" },
       "kurum": "BTK Akademi",
       "yil": 2022,
       "link": "https://www.btkakademi.gov.tr/portal/certificate/validate?certificateId=dx1hABDMw1"
     },
     {
-      "ad": "Veri Bilimi ve Yapay Zekaya Giriş",
+      "ad": { "tr": "Veri Bilimi ve Yapay Zekaya Giriş", "en": "Introduction to Data Science and AI" },
       "kurum": "Turkcell Geleceği Yazanlar",
       "yil": 2023,
       "link": "https://gelecegiyazanlar.turkcell.com.tr/certificate/dWlkMjM5NjQ1Y2lkNTQ2cWlkMTA1ZW5k"
     },
     {
-      "ad": "Veri Okuryazarlığı",
+      "ad": { "tr": "Veri Okuryazarlığı", "en": "Data Literacy" },
       "kurum": "Turkcell Geleceği Yazanlar",
       "yil": 2023,
       "link": "https://gelecegiyazanlar.turkcell.com.tr/certificate/dWlkMjM5NjQ1Y2lkNTQ4cWlkMTA3ZW5k"
     },
     {
-      "ad": "Python Bootcamp",
+      "ad": { "tr": "Python Bootcamp", "en": "Python Bootcamp" },
       "kurum": "Global AI Hub",
       "yil": 2022
     },
     {
-      "ad": "Python For Machine Learning",
+      "ad": { "tr": "Python For Machine Learning", "en": "Python For Machine Learning" },
       "kurum": "Turkcell Geleceği Yazanlar",
       "yil": 2023
     },
     {
-      "ad": "HTML5 ile Web Geliştirme",
+      "ad": { "tr": "HTML5 ile Web Geliştirme", "en": "Web Development with HTML5" },
       "kurum": "BTK Akademi",
       "yil": 2022,
       "link": "https://www.btkakademi.gov.tr/portal/certificate/validate?certificateId=gK2ho7XXzJ"
     }
   ],
   "yetenekler": {
-    "mobil_gelistirme": ["Flutter","ArkTS","ArkUI", "Swift", "SwiftUI"],
-    "backend_api": ["Firebase", "REST API", "Node.js", "Django"],
-    "programlama_dilleri": ["Dart", "C++", "Java", "Python"],
-    "diger": ["Git", "UI/UX Tasarım", "State Management (BloC, Provider)","MVVM"]
+    "mobil_gelistirme": {
+      "label": { "tr": "Mobil Geliştirme", "en": "Mobile Development" },
+      "items": ["Flutter", "ArkTS", "ArkUI", "Swift", "SwiftUI"]
+    },
+    "backend_api": {
+      "label": { "tr": "Backend & API", "en": "Backend & API" },
+      "items": ["Firebase", "REST API", "Node.js", "Django"]
+    },
+    "programlama_dilleri": {
+      "label": { "tr": "Programlama Dilleri", "en": "Programming Languages" },
+      "items": ["Dart", "C++", "Java", "Python"]
+    },
+    "diger": {
+      "label": { "tr": "Diğer", "en": "Other" },
+      "items": ["Git", "UI/UX Design", "State Management (BloC, Provider)", "MVVM"]
+    }
   },
   "is_deneyimi": [
-    
     {
-      "pozisyon": "Freelance Mobil Uygulama Geliştirici",
+      "pozisyon": { "tr": "Freelance Mobil Uygulama Geliştirici", "en": "Freelance Mobile App Developer" },
       "sirket": "The Food Runners",
-      "yillar": "07.2021 - Devam Ediyor",
-      "aciklama": "Flutter kullanarak Cross Platform bir uygulama geliştirip AppStore & PlayStore da yayınladım."
+      "yillar": "07.2021 - Present",
+      "aciklama": {
+        "tr": "Flutter kullanarak Cross Platform bir uygulama geliştirip AppStore & PlayStore'da yayınladım.",
+        "en": "Developed and published a cross-platform app to the App Store & Play Store using Flutter."
+      }
     },
     {
-      "pozisyon": "Mobil Uygulama Geliştirici Gönüllü Stajyeri",
+      "pozisyon": { "tr": "Mobil Uygulama Geliştirici Gönüllü Stajyeri", "en": "Volunteer Mobile App Developer Intern" },
       "sirket": "New Software Solutions",
       "yillar": "07.2021 - 02.2022",
-      "aciklama": "Flutter kullanarak bir tablet uygulaması geliştirdim ve PlayStore da yayınladım."
+      "aciklama": {
+        "tr": "Flutter kullanarak bir tablet uygulaması geliştirdim ve PlayStore'da yayınladım.",
+        "en": "Developed a tablet application using Flutter and published it on the Play Store."
+      }
     },
     {
-      "pozisyon": "Mobil Servisler Stajyeri",
+      "pozisyon": { "tr": "Mobil Servisler Stajyeri", "en": "Mobile Services Intern" },
       "sirket": "Huawei",
       "yillar": "06.2025 - 08.2025",
-      "aciklama": "ArkTS kullanarak HarmonyOS ekosistemi için uygulamalar geliştirdim."
+      "aciklama": {
+        "tr": "ArkTS kullanarak HarmonyOS ekosistemi için uygulamalar geliştirdim.",
+        "en": "Developed applications for the HarmonyOS ecosystem using ArkTS."
+      }
     }
   ],
   "gonullu_deneyim": [
     {
-      "pozisyon": "Yazılım Mühendisliği Kulübü Yöneticiliği",
+      "pozisyon": { "tr": "Yazılım Mühendisliği Kulübü Yöneticiliği", "en": "Software Engineering Club Board Member" },
       "kurum": "Beykent Üniversitesi",
       "yillar": "2022 - 2023",
-      "aciklama": "40'tan fazla katılımcı ile kodlama etkinlikleri düzenleme, teknik danışmanlık ve üyelerin kodlama becerilerini geliştirmelerine yardımcı olma."
+      "aciklama": {
+        "tr": "40'tan fazla katılımcı ile kodlama etkinlikleri düzenleme, teknik danışmanlık ve üyelerin kodlama becerilerini geliştirmelerine yardımcı olma.",
+        "en": "Organized coding events with 40+ participants, provided technical mentoring and helped members improve their coding skills."
+      }
     }
   ]
-} 
+}

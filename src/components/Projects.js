@@ -3,11 +3,14 @@ import projectsData from '../data/projects.json';
 import { useLang } from '../context/LanguageContext';
 import { t } from '../translations';
 
+/* ── Pick the right language from a bilingual field ── */
+const L = (field, lang) => (typeof field === 'object' ? field[lang] ?? field.tr : field);
+
 const getLinkHref = (linkler) =>
   linkler?.appstore || linkler?.playstore || linkler?.website || linkler?.web || linkler?.github || null;
 
 /* ── Single project card ── */
-const ProjectCard = ({ proje, index, tx }) => {
+const ProjectCard = ({ proje, index, tx, lang }) => {
   const href = getLinkHref(proje.linkler);
   const [imgHovered, setImgHovered] = React.useState(false);
 
@@ -79,14 +82,14 @@ const ProjectCard = ({ proje, index, tx }) => {
           className="font-[400] text-[var(--color-pure-black)]"
           style={{ fontSize: 'clamp(15px, 1.6vw, 21px)', lineHeight: 1.3, letterSpacing: '-0.02em', marginBottom: '14px' }}
         >
-          {proje.ad}
+          {L(proje.ad, lang)}
         </h3>
 
         {/* Description */}
         <p
           style={{ color: 'var(--color-concrete)', fontSize: '13px', lineHeight: 1.6, letterSpacing: '-0.01em' }}
         >
-          {proje.aciklama}
+          {L(proje.aciklama, lang)}
         </p>
       </div>
 
@@ -171,6 +174,7 @@ const Projects = () => {
               proje={proje}
               index={index % allProjects.length}
               tx={tx}
+              lang={lang}
             />
           ))}
         </div>

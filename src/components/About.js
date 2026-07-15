@@ -9,6 +9,9 @@ const About = () => {
   const tx = t[lang];
   const [currentSection, setCurrentSection] = useState('education');
 
+  /* ── Helper: pick the right language from a bilingual field ── */
+  const L = (field) => (typeof field === 'object' ? field[lang] ?? field.tr : field);
+
   const sections = [
     { id: 'education', title: tx.about.tabs.education },
     { id: 'experience', title: tx.about.tabs.experience },
@@ -76,7 +79,7 @@ const About = () => {
                   href={edu.link}
                   left={
                     <>
-                      <p style={{ fontSize: '15px', color: 'var(--color-pure-black)', fontWeight: 400 }}>{edu.bolum}</p>
+                      <p style={{ fontSize: '15px', color: 'var(--color-pure-black)', fontWeight: 400 }}>{L(edu.bolum)}</p>
                       <p style={{ fontSize: '11px', color: 'var(--color-concrete)', letterSpacing: '0.04em', marginTop: '3px' }}>{edu.kurum}</p>
                     </>
                   }
@@ -94,9 +97,9 @@ const About = () => {
                 key={i}
                 left={
                   <>
-                    <p style={{ fontSize: '15px', color: 'var(--color-pure-black)', fontWeight: 400 }}>{exp.pozisyon}</p>
+                    <p style={{ fontSize: '15px', color: 'var(--color-pure-black)', fontWeight: 400 }}>{L(exp.pozisyon)}</p>
                     <p style={{ fontSize: '11px', color: 'var(--color-concrete)', letterSpacing: '0.04em', marginTop: '3px' }}>{exp.sirket}</p>
-                    <p style={{ fontSize: '13px', color: 'var(--color-concrete)', lineHeight: 1.5, marginTop: '8px' }}>{exp.aciklama}</p>
+                    <p style={{ fontSize: '13px', color: 'var(--color-concrete)', lineHeight: 1.5, marginTop: '8px' }}>{L(exp.aciklama)}</p>
                   </>
                 }
                 right={exp.yillar}
@@ -113,9 +116,9 @@ const About = () => {
                 key={i}
                 left={
                   <>
-                    <p style={{ fontSize: '15px', color: 'var(--color-pure-black)', fontWeight: 400 }}>{exp.pozisyon}</p>
+                    <p style={{ fontSize: '15px', color: 'var(--color-pure-black)', fontWeight: 400 }}>{L(exp.pozisyon)}</p>
                     <p style={{ fontSize: '11px', color: 'var(--color-concrete)', letterSpacing: '0.04em', marginTop: '3px' }}>{exp.kurum}</p>
-                    <p style={{ fontSize: '13px', color: 'var(--color-concrete)', lineHeight: 1.5, marginTop: '8px' }}>{exp.aciklama}</p>
+                    <p style={{ fontSize: '13px', color: 'var(--color-concrete)', lineHeight: 1.5, marginTop: '8px' }}>{L(exp.aciklama)}</p>
                   </>
                 }
                 right={exp.yillar}
@@ -135,7 +138,7 @@ const About = () => {
                   href={cert.link || undefined}
                   left={
                     <>
-                      <p style={{ fontSize: '15px', color: 'var(--color-pure-black)', fontWeight: 400 }}>{cert.ad}</p>
+                      <p style={{ fontSize: '15px', color: 'var(--color-pure-black)', fontWeight: 400 }}>{L(cert.ad)}</p>
                       <p style={{ fontSize: '11px', color: 'var(--color-concrete)', letterSpacing: '0.04em', marginTop: '3px' }}>{cert.kurum}</p>
                     </>
                   }
@@ -148,7 +151,7 @@ const About = () => {
       case 'skills':
         return (
           <motion.div key="skills" variants={fade} initial="hidden" animate="show" exit="exit">
-            {Object.entries(aboutData.yetenekler).map(([category, skills]) => (
+            {Object.entries(aboutData.yetenekler).map(([category, data]) => (
               <Row
                 key={category}
                 left={
@@ -157,10 +160,10 @@ const About = () => {
                       className="uppercase shrink-0"
                       style={{ color: 'var(--color-concrete)', fontSize: '11px', letterSpacing: '0.08em', width: '140px', paddingTop: '2px' }}
                     >
-                      {category.replace(/_/g, ' ')}
+                      {L(data.label)}
                     </span>
                     <div className="flex flex-wrap gap-x-[16px] gap-y-[4px]">
-                      {skills.map((skill, idx) => (
+                      {data.items.map((skill, idx) => (
                         <span key={idx} style={{ fontSize: '15px', color: 'var(--color-pure-black)' }}>
                           {skill}
                         </span>

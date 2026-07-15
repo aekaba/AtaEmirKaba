@@ -151,25 +151,25 @@ const Contact = () => {
       >
         <div className="grid grid-cols-2 md:grid-cols-4 gap-y-[16px] items-center">
 
-          {/* Col 1: Wordmark */}
+      {/* Col 1: NFC Studio wordmark */}
           <div>
             <span
               className="font-[400] uppercase text-[var(--color-pure-black)]"
               style={{ fontSize: 'clamp(14px, 1.5vw, 20px)', letterSpacing: '-0.04em', lineHeight: 1 }}
             >
-              AEK
+              {tx.contact.studio}
             </span>
           </div>
 
-          {/* Col 2: Location */}
+          {/* Col 2: Name + location */}
           <div>
             <p style={{ color: 'var(--color-concrete)', fontSize: '11px', letterSpacing: '0.04em', lineHeight: 1.7 }}>
-              Ata Emir Kaba<br />
-              IST — LA Based
+              {tx.contact.tagline}<br />
+              {tx.contact.location}
             </p>
           </div>
 
-          {/* Col 3: empty on mobile, spacer */}
+          {/* Col 3: spacer */}
           <div />
 
           {/* Col 4: Privacy + copyright */}
@@ -188,6 +188,7 @@ const Contact = () => {
               <span>{tx.contact.copyright}</span>
             </div>
           </div>
+
 
         </div>
       </footer>
