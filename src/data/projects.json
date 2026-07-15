@@ -1,8 +1,27 @@
 {
-  "profesyonel": [
+  "projeler": [
     {
-      "ad": "The Food Runner Drivers",
-      "aciklama": "Hali hazırda olan web sitesi ile uyumlu uygulaması. Şöförler siparişlerini kontrol edip, siparişin durumunu güncelleyebilir. Siparişi bitirince fotoğrafını çekip ofise gönderebilir ve ofis tüm bu olanların konum takibini yapabilir.",
+      "ad": { "tr": "Mezatta", "en": "Mezatta" },
+      "aciklama": {
+        "tr": "Geleneksel açık artırma heyecanını dijital dünyanın hızıyla birleştiren canlı yayın tabanlı yeni nesil mezat platformu. Antika ve koleksiyon meraklıları için ultra düşük gecikmeli (low-latency) yayınlar, şeffaf puanlama ve güven odaklı interaktif bir pazar yeri deneyimi sunar.",
+        "en": "A next-generation live auction platform combining the excitement of traditional bidding with the speed of the digital world. Offers ultra-low latency streams, transparent scoring, and a trust-focused interactive marketplace for antique and collectibles enthusiasts."
+      },
+      "teknolojiler": ["Flutter", "React", "AWS IVS", "WebSockets / Socket.io", "Node.js"],
+      "platformlar": ["iOS", "Android", "Web"],
+      "resim": "/images/mezatta.png",
+      "linkler": {
+        "appstore": null,
+        "playstore": null,
+        "github": null,
+        "website": "https://mezatta.live"
+      }
+    },
+    {
+      "ad": { "tr": "The Food Runner Drivers", "en": "The Food Runner Drivers" },
+      "aciklama": {
+        "tr": "Hali hazırda olan web sitesi ile uyumlu uygulaması. Şöförler siparişlerini kontrol edip, siparişin durumunu güncelleyebilir. Siparişi bitirince fotoğrafını çekip ofise gönderebilir ve ofis tüm bu olanların konum takibini yapabilir.",
+        "en": "Mobile companion to the existing web platform. Drivers can check their orders, update delivery status, take a completion photo to send to the office — while the office tracks everyone's location in real time."
+      },
       "teknolojiler": ["Flutter", "REST API", "State Management (BLoC)"],
       "platformlar": ["iOS", "Android"],
       "resim": "/images/thefoodrunnerdrivers.png",
@@ -13,8 +32,11 @@
       }
     },
     {
-      "ad": "Umut Defter ",
-      "aciklama": "Şirketler arası satış yönetimi için tablet uygulaması. Satış temsilcileri sahada ürün siparişi alabilir ve stok takibi yapabilir.",
+      "ad": { "tr": "Umut Defter", "en": "Umut Defter" },
+      "aciklama": {
+        "tr": "Şirketler arası satış yönetimi için tablet uygulaması. Satış temsilcileri sahada ürün siparişi alabilir ve stok takibi yapabilir.",
+        "en": "Tablet application for B2B sales management. Sales representatives can take product orders in the field and track inventory."
+      },
       "teknolojiler": ["Flutter", "REST API"],
       "platformlar": ["Android"],
       "resim": "/images/umutdefter.jpg",
@@ -22,64 +44,40 @@
         "playstore": "https://play.google.com/store/apps/details?id=com.nwblsm.umutdefter",
         "github": null
       }
-    }
-  ],
-  "akademik": [
+    },
     {
-      "ad": "Yapay Zeka Destekli Müşteri Kaybı Analizi",
-      "aciklama": "Üniversite bünyesinde Bitirme tezimde arkadaşlarımla birlikte yazdığımız bir makale. 5 farklı makine öğrenmesi, 5 farklı derin öğrenme ve 1 tanede özgün algoritma ile model eğitimleri gerçekleştirilip gerekli metriklerde ölçümler yapılıp değerlendirilmiştir. Bu çalışma ile birlikte Tübitak 2209-A projesine kabul görmüş bulunuyoruz.",
-      "teknolojiler": ["Python", "Machine Learning", "Deep Learning","Explainable AI"],
+      "ad": {
+        "tr": "Yapay Zeka Destekli Müşteri Kaybı Analizi",
+        "en": "AI-Powered Customer Churn Analysis"
+      },
+      "aciklama": {
+        "tr": "Üniversite bünyesinde Bitirme tezimde arkadaşlarımla birlikte yazdığımız bir makale. 5 farklı makine öğrenmesi, 5 farklı derin öğrenme ve 1 tanede özgün algoritma ile model eğitimleri gerçekleştirilip gerekli metriklerde ölçümler yapılıp değerlendirilmiştir. Bu çalışma ile birlikte Tübitak 2209-A projesine kabul görmüş bulunuyoruz.",
+        "en": "A research paper co-authored as a graduation thesis. 5 machine learning, 5 deep learning, and 1 original algorithm were trained and evaluated on multiple metrics. The work was accepted into the TÜBİTAK 2209-A research programme."
+      },
+      "teknolojiler": ["Python", "Machine Learning", "Deep Learning", "Explainable AI"],
       "platformlar": [],
-      "resim": null,
+      "resim": "/images/tubitak.png",
       "linkler": {
         "web": null,
         "github": "https://github.com/aekaba/Customer-Churn-Prediction-with-AI"
       }
     },
     {
-      "ad": "NLP yöntemiyle restoran yorumlarının sınıflandırılması",
-      "aciklama": "Üniversite bünyesinde Doğal Dil İşleme dersi kapsamında yapmış olduğum projedir. Restoran yorumlarının sınıflandırılması için kullanılan bir model geliştirdim. İTÜ DDİ Grubunun yayınladığı bir veri seti kullanılmıştır.",
+      "ad": {
+        "tr": "NLP yöntemiyle restoran yorumlarının sınıflandırılması",
+        "en": "Restaurant Review Classification with NLP"
+      },
+      "aciklama": {
+        "tr": "Üniversite bünyesinde Doğal Dil İşleme dersi kapsamında yapmış olduğum projedir. Restoran yorumlarının sınıflandırılması için kullanılan bir model geliştirdim. İTÜ DDİ Grubunun yayınladığı bir veri seti kullanılmıştır.",
+        "en": "A project completed for a Natural Language Processing course at university. I developed a model to classify restaurant reviews using a dataset published by the ITU NLP Group."
+      },
       "teknolojiler": ["Python", "Machine Learning", "NLP"],
-      "platformlar": ["Github"],
-      "resim": null,
+      "platformlar": [],
+      "resim": "/images/nlp.png",
       "linkler": {
         "web": null,
         "github": "https://github.com/aekaba/RestoranReviewsNLP"
       }
-    },
-    {
-      "ad": "Java Akademik Projeler",
-      "aciklama": "Üniversite bünyesinde Java'ya giriş ve İleri Java dersleri kapsamında yazmış olduğum kodlar.",
-      "teknolojiler": ["Java", "Spring"],
-      "platformlar": ["Github"],
-      "resim": null,
-      "linkler": {
-        "web": null,
-        "github": "https://github.com/aekaba/JavaAcademicProjects"
-      }
-    }
-  ],
-  "kisisel": [
-    {
-      "ad": "Ata Emir Kaba Portfolio",
-      "aciklama": "Bu portfolio, Ata Emir Kaba'nın kişisel bilgilerini, projelerini ve tecrübelerini sunar. React.js ve tailwind css kullanılarak geliştirilmiştir.",
-      "teknolojiler": ["ReactJS", "Tailwind CSS"],
-      "platformlar": ["Web"],
-      "resim": null,
-      "linkler": {
-        "web": "https://ataemirkaba.com",
-        "github": "https://github.com/aekaba/AtaEmirKaba"
-      }
-    },
-    {
-      "ad": "NBA App",
-      "aciklama": "NBA maçlarının sonuçlarını görüntüleyebilen bir uygulama. Flutter & Dart kullanılarak geliştirilmiştir.",
-      "teknolojiler": ["Flutter", "Dart","REST API"],
-      "platformlar": [],
-      "resim": null,
-      "linkler": {
-        "github": "https://github.com/aekaba/NBA"
-      }
     }
   ]
-} 
+}

@@ -1,392 +1,186 @@
-import React, { useState, useEffect, useRef, useMemo, useCallback } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { FaAppStore, FaGooglePlay, FaGlobe, FaGithub, FaCode, FaTimes } from 'react-icons/fa';
+import React from 'react';
 import projectsData from '../data/projects.json';
-import Layout from './Layout';
+import { useLang } from '../context/LanguageContext';
+import { t } from '../translations';
 
-const sections = [
-  { id: 'profesyonel', title: 'Profesyonel' },
-  { id: 'akademik', title: 'Akademik' },
-  { id: 'kisisel', title: 'Kişisel' }
-];
+/* ── Pick the right language from a bilingual field ── */
+const L = (field, lang) => (typeof field === 'object' ? field[lang] ?? field.tr : field);
 
-const container = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.2
-    }
-  }
-};
+const getLinkHref = (linkler) =>
+  linkler?.appstore || linkler?.playstore || linkler?.website || linkler?.web || linkler?.github || null;
 
-const item = {
-  hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0 }
-};
-
-const modalVariants = {
-  hidden: { opacity: 0, scale: 0.8 },
-  visible: { opacity: 1, scale: 1 }
-};
-
-const Projects = ({ setIsModalOpen }) => {
-  const [currentSection, setCurrentSection] = useState('profesyonel');
-  const [selectedProject, setSelectedProject] = useState(null);
-  const projectsContainerRef = useRef(null);
-
-  // Modal açıldığında scroll'u engelle
-  useEffect(() => {
-    if (selectedProject) {
-      document.body.style.overflow = 'hidden';
-      setIsModalOpen(true);
-    } else {
-      document.body.style.overflow = 'unset';
-      setIsModalOpen(false);
-    }
-
-    return () => {
-      document.body.style.overflow = 'unset';
-      setIsModalOpen(false);
-    };
-  }, [selectedProject, setIsModalOpen]);
-
-  // Sekme değişiminde scroll'u kontrol et
-  const handleSectionChange = (sectionId) => {
-    if (projectsContainerRef.current) {
-      projectsContainerRef.current.scrollTop = 0;
-    }
-    setCurrentSection(sectionId);
-  };
-
-  // Data and variants moved outside the component
-
-  const renderProjectCard = useCallback((proje) => (
-    <motion.div
-      variants={item}
-      className="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-md flex flex-col h-full cursor-pointer"
-      onClick={() => setSelectedProject(proje)}
-    >
-      {/* Proje Resmi veya Placeholder */}
-      <div className="relative h-40 bg-gray-100 dark:bg-gray-700">
-        {proje.resim ? (
-          <img
-            src={proje.resim}
-            alt={`${proje.ad} projesi görseli - ${proje.aciklama.slice(0, 50)}...`}
-            className="w-full h-full object-cover"
-          />
-        ) : (
-          <div className="w-full h-full flex items-center justify-center">
-            <FaCode className="text-gray-400 dark:text-gray-500" size={32} />
-          </div>
-        )}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-        <div className="absolute bottom-0 left-0 right-0 p-3">
-          <h3 className="text-lg font-semibold text-white">{proje.ad}</h3>
-        </div>
-      </div>
-
-      {/* Proje Detayları */}
-      <div className="p-3 flex-1 flex flex-col">
-        {/* Açıklama - maksimum 3 satır */}
-        <div className="flex-1">
-          <p className="text-gray-600 dark:text-gray-300 text-sm line-clamp-3">
-            {proje.aciklama}
-          </p>
-        </div>
-
-        {/* Teknolojiler */}
-        <div className="flex flex-wrap gap-1.5 my-3">
-          {proje.teknolojiler.map((tech, idx) => (
-            <span
-              key={idx}
-              className="px-2 py-0.5 text-xs bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 rounded-full"
-            >
-              {tech}
-            </span>
-          ))}
-        </div>
-
-        {/* Alt Kısım - Platform ve Linkler */}
-        <div className="pt-2 mt-auto border-t border-gray-200 dark:border-gray-700">
-          {/* Platformlar */}
-          {proje.platformlar && proje.platformlar.length > 0 && (
-            <div className="flex items-center gap-1.5 text-xs text-gray-500 dark:text-gray-400 mb-2">
-              <span>Platformlar:</span>
-              {proje.platformlar.map((platform, idx) => (
-                <span key={idx} className="font-medium">
-                  {platform}
-                  {idx < proje.platformlar.length - 1 ? ', ' : ''}
-                </span>
-              ))}
-            </div>
-          )}
-
-          {/* Platform Linkleri */}
-          <div className="flex items-center gap-3">
-            {proje.linkler.appstore && (
-              <a
-                href={proje.linkler.appstore}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors"
-                onClick={(e) => e.stopPropagation()}
-              >
-                <FaAppStore size={20} />
-              </a>
-            )}
-            {proje.linkler.playstore && (
-              <a
-                href={proje.linkler.playstore}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors"
-                onClick={(e) => e.stopPropagation()}
-              >
-                <FaGooglePlay size={20} />
-              </a>
-            )}
-            {proje.linkler.web && (
-              <a
-                href={proje.linkler.web}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors"
-                onClick={(e) => e.stopPropagation()}
-              >
-                <FaGlobe size={20} />
-              </a>
-            )}
-            {proje.linkler.github && (
-              <a
-                href={proje.linkler.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors"
-                onClick={(e) => e.stopPropagation()}
-              >
-                <FaGithub size={20} />
-              </a>
-            )}
-          </div>
-        </div>
-      </div>
-    </motion.div>
-  ), []);
-
-  // Modal Bileşeni
-  const ProjectModal = React.memo(({ project, onClose }) => {
-    if (!project) return null;
-
-    return (
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
-        onClick={onClose}
-      >
-        <motion.div
-          variants={modalVariants}
-          initial="hidden"
-          animate="visible"
-          exit="hidden"
-          className="bg-white dark:bg-gray-800 rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto"
-          onClick={(e) => e.stopPropagation()}
-        >
-          {/* Modal Header */}
-          <div className="relative">
-            {project.resim ? (
-              <div className="w-full aspect-video">
-                <img
-                  src={project.resim}
-                  alt={`${project.ad} projesi detaylı görseli - ${project.aciklama.slice(0, 50)}...`}
-                  className="w-full h-full object-contain bg-gray-100 dark:bg-gray-700"
-                />
-              </div>
-            ) : (
-              <div className="w-full aspect-video bg-gray-100 dark:bg-gray-700 flex items-center justify-center">
-                <FaCode className="text-gray-400 dark:text-gray-500" size={64} />
-              </div>
-            )}
-            <button
-              onClick={onClose}
-              className="absolute top-4 right-4 text-white bg-black/50 hover:bg-black/70 rounded-full p-2 transition-colors"
-            >
-              <FaTimes size={20} />
-            </button>
-          </div>
-
-          {/* Modal Content */}
-          <div className="p-6">
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-              {project.ad}
-            </h2>
-
-            <div className="space-y-6">
-              {/* Açıklama */}
-              <div>
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-                  Proje Açıklaması
-                </h3>
-                <p className="text-gray-600 dark:text-gray-300">
-                  {project.aciklama}
-                </p>
-              </div>
-
-              {/* Teknolojiler */}
-              <div>
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-                  Kullanılan Teknolojiler
-                </h3>
-                <div className="flex flex-wrap gap-2">
-                  {project.teknolojiler.map((tech, idx) => (
-                    <span
-                      key={idx}
-                      className="px-3 py-1 text-sm bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 rounded-full"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              {/* Platformlar */}
-              {project.platformlar && project.platformlar.length > 0 && (
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-                    Platformlar
-                  </h3>
-                  <div className="flex flex-wrap gap-2">
-                    {project.platformlar.map((platform, idx) => (
-                      <span
-                        key={idx}
-                        className="px-3 py-1 text-sm bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 rounded-full"
-                      >
-                        {platform}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {/* Linkler */}
-              <div>
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-                  Bağlantılar
-                </h3>
-                <div className="flex gap-4">
-                  {project.linkler.appstore && (
-                    <a
-                      href={project.linkler.appstore}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors"
-                    >
-                      <FaAppStore size={24} />
-                      <span>App Store</span>
-                    </a>
-                  )}
-                  {project.linkler.playstore && (
-                    <a
-                      href={project.linkler.playstore}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors"
-                    >
-                      <FaGooglePlay size={24} />
-                      <span>Play Store</span>
-                    </a>
-                  )}
-                  {project.linkler.web && (
-                    <a
-                      href={project.linkler.web}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors"
-                    >
-                      <FaGlobe size={24} />
-                      <span>Web Sitesi</span>
-                    </a>
-                  )}
-                  {project.linkler.github && (
-                    <a
-                      href={project.linkler.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors"
-                    >
-                      <FaGithub size={24} />
-                      <span>GitHub</span>
-                    </a>
-                  )}
-                </div>
-              </div>
-            </div>
-          </div>
-        </motion.div>
-      </motion.div>
-    );
-  });
-
-  const memoizedProjectCards = useMemo(() => 
-    projectsData[currentSection].map((proje, index) => renderProjectCard(proje)),
-    [currentSection, renderProjectCard] 
-  );
+/* ── Single project card ── */
+const ProjectCard = ({ proje, index, tx, lang }) => {
+  const href = getLinkHref(proje.linkler);
+  const [imgHovered, setImgHovered] = React.useState(false);
 
   return (
-    <Layout title="Projelerim">
-      {/* Alt Navigasyon */}
-      <div className="flex justify-center mb-3">
-        <div className="flex space-x-2 sm:space-x-3 bg-white dark:bg-gray-800 rounded-full p-1 shadow-md">
-          {sections.map((section) => (
-            <button
-              key={section.id}
-              onClick={() => handleSectionChange(section.id)}
-              className={`px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium transition-colors
-                ${currentSection === section.id
-                  ? 'bg-gray-900 text-white dark:bg-white dark:text-gray-900'
-                  : 'text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white'
-                }`}
-            >
-              {section.title}
-            </button>
-          ))}
+    <div
+      style={{
+        flex: '0 0 calc(33.333vw - 18px)',
+        borderRight: '1px solid var(--color-pure-black)',
+        borderBottom: '1px solid var(--color-pure-black)',
+        padding: '26px',
+        minHeight: '420px',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        boxSizing: 'border-box',
+      }}
+    >
+      {/* Top */}
+      <div>
+        {/* Index */}
+        <span
+          style={{ color: 'var(--color-concrete)', fontSize: '11px', letterSpacing: '0.08em', display: 'block', marginBottom: '20px' }}
+        >
+          {String(index + 1).padStart(2, '0')}
+        </span>
+
+        {/* Image */}
+        <div
+          style={{
+            width: '100%',
+            height: '110px',
+            marginBottom: '20px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+          onMouseEnter={() => setImgHovered(true)}
+          onMouseLeave={() => setImgHovered(false)}
+        >
+          {proje.resim ? (
+            <img
+              src={proje.resim}
+              alt={proje.ad}
+              style={{
+                maxWidth: '100%',
+                maxHeight: '110px',
+                objectFit: 'contain',
+                display: 'block',
+                filter: imgHovered ? 'grayscale(0%)' : 'grayscale(100%)',
+                opacity: imgHovered ? 1 : 0.7,
+                transition: 'filter 0.4s ease, opacity 0.4s ease',
+              }}
+            />
+          ) : (
+            <div style={{ width: '100%', height: '110px' }} />
+          )}
         </div>
+
+        {/* Tech tag */}
+        <span
+          className="uppercase block"
+          style={{ color: 'var(--color-concrete)', fontSize: '11px', letterSpacing: '0.08em', marginBottom: '12px' }}
+        >
+          {proje.teknolojiler[0]}
+        </span>
+
+        {/* Name */}
+        <h3
+          className="font-[400] text-[var(--color-pure-black)]"
+          style={{ fontSize: 'clamp(15px, 1.6vw, 21px)', lineHeight: 1.3, letterSpacing: '-0.02em', marginBottom: '14px' }}
+        >
+          {L(proje.ad, lang)}
+        </h3>
+
+        {/* Description */}
+        <p
+          style={{ color: 'var(--color-concrete)', fontSize: '13px', lineHeight: 1.6, letterSpacing: '-0.01em' }}
+        >
+          {L(proje.aciklama, lang)}
+        </p>
       </div>
 
-      {/* Projeler Grid */}
-      <div 
-        ref={projectsContainerRef}
-        className="overflow-y-auto pb-4 px-2 sm:px-4" 
-        style={{ maxHeight: 'calc(100vh - 160px)' }}
-        onClick={(e) => e.stopPropagation()}
-      >
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={currentSection}
-            variants={container}
-            initial="hidden"
-            animate="show"
-            exit="hidden"
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4"
-          >
-            {memoizedProjectCards}
-          </motion.div>
-        </AnimatePresence>
-      </div>
-
-      {/* Modal */}
-      <AnimatePresence>
-        {selectedProject && (
-          <ProjectModal
-            project={selectedProject}
-            onClose={() => setSelectedProject(null)}
-          />
+      {/* Bottom: links */}
+      <div style={{ marginTop: '26px', display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
+        {proje.linkler?.appstore && (
+          <a href={proje.linkler.appstore} target="_blank" rel="noopener noreferrer"
+            className="hover:opacity-50 transition-opacity inline-block"
+            style={{ color: 'var(--color-pure-black)', fontSize: '13px', paddingBottom: '3px', borderBottom: '1px solid var(--color-concrete)' }}>
+            App Store ↗
+          </a>
         )}
-      </AnimatePresence>
-    </Layout>
+        {proje.linkler?.playstore && (
+          <a href={proje.linkler.playstore} target="_blank" rel="noopener noreferrer"
+            className="hover:opacity-50 transition-opacity inline-block"
+            style={{ color: 'var(--color-pure-black)', fontSize: '13px', paddingBottom: '3px', borderBottom: '1px solid var(--color-concrete)' }}>
+            Play Store ↗
+          </a>
+        )}
+        {!proje.linkler?.appstore && !proje.linkler?.playstore && href && (
+          <a href={href} target="_blank" rel="noopener noreferrer"
+            className="hover:opacity-50 transition-opacity inline-block"
+            style={{ color: 'var(--color-pure-black)', fontSize: '13px', paddingBottom: '3px', borderBottom: '1px solid var(--color-concrete)' }}>
+            {proje.linkler?.web || proje.linkler?.website ? tx.projects.viewProject : 'GitHub'} ↗
+          </a>
+        )}
+      </div>
+    </div>
   );
 };
 
-export default Projects; 
+const Projects = () => {
+  const { lang } = useLang();
+  const tx = t[lang];
+  const [paused, setPaused] = React.useState(false);
+
+  const allProjects = projectsData.projeler || [];
+
+  // Duplicate for seamless infinite loop (translateX -50% = one full set)
+  const loopProjects = [...allProjects, ...allProjects];
+
+  return (
+    <section
+      className="snap-start w-full bg-[var(--color-paper)] relative overflow-hidden"
+      style={{ minHeight: '100vh', textAlign: 'left' }}
+    >
+      {/* Section Header */}
+      <div className="w-full px-[26px]" style={{ paddingTop: '100px', paddingBottom: '40px' }}>
+        <span
+          className="uppercase block"
+          style={{ color: 'var(--color-concrete)', fontSize: '11px', letterSpacing: '0.08em', marginBottom: '12px' }}
+        >
+          {tx.projects.label}
+        </span>
+        <h2
+          className="font-[400] text-[var(--color-pure-black)]"
+          style={{ fontSize: 'clamp(28px, 4vw, 52px)', lineHeight: 1.2, letterSpacing: '-0.03em' }}
+        >
+          {tx.projects.heading}
+        </h2>
+      </div>
+
+      {/* ── Carousel ── */}
+      <div
+        style={{
+          borderTop: '1px solid var(--color-pure-black)',
+          borderLeft: '1px solid var(--color-pure-black)',
+          overflow: 'hidden',
+          paddingBottom: '80px',
+          cursor: paused ? 'default' : 'default',
+        }}
+        onMouseEnter={() => setPaused(true)}
+        onMouseLeave={() => setPaused(false)}
+      >
+        <div
+          className="carousel-track"
+          style={{ animationPlayState: paused ? 'paused' : 'running' }}
+        >
+          {loopProjects.map((proje, index) => (
+            <ProjectCard
+              key={index}
+              proje={proje}
+              index={index % allProjects.length}
+              tx={tx}
+              lang={lang}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Projects;
