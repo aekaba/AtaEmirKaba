@@ -11,7 +11,6 @@ const getLinkHref = (linkler) =>
 
 /* ── Project Detail Popup (mobile) ── */
 const ProjectPopup = ({ proje, index, tx, lang, onClose }) => {
-  const href = getLinkHref(proje.linkler);
 
   // Close on backdrop click
   const handleBackdrop = (e) => {
@@ -131,7 +130,6 @@ const ProjectPopup = ({ proje, index, tx, lang, onClose }) => {
 
 /* ── Desktop card (carousel) ── */
 const ProjectCard = ({ proje, index, tx, lang }) => {
-  const href = getLinkHref(proje.linkler);
   const [imgHovered, setImgHovered] = React.useState(false);
 
   return (
