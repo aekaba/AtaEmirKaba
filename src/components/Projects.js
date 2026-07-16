@@ -6,9 +6,6 @@ import { t } from '../translations';
 /* ── Pick the right language from a bilingual field ── */
 const L = (field, lang) => (typeof field === 'object' ? field[lang] ?? field.tr : field);
 
-const getLinkHref = (linkler) =>
-  linkler?.appstore || linkler?.playstore || linkler?.website || linkler?.web || linkler?.github || null;
-
 /* ── Project Detail Popup (mobile) ── */
 const ProjectPopup = ({ proje, index, tx, lang, onClose }) => {
 
