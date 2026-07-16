@@ -65,14 +65,16 @@ const Navbar = ({ onNavClick, hidden, isDark }) => {
         <div
           style={{
             display: 'flex',
-            gap: '40px',
+            flexDirection: 'column',
+            gap: '2px',
             fontWeight: 400,
             textTransform: 'uppercase',
-            fontSize: '20px',
-            letterSpacing: '0.06em',
+            fontSize: 'clamp(10px, 2.2vw, 14px)',
+            letterSpacing: '0.04em',
             color: textColor,
             transition: 'color 0.25s',
             pointerEvents: 'auto',
+            lineHeight: 1.3,
           }}
         >
           <span>{formatTime(time, 'Europe/Istanbul')} IST</span>
@@ -80,7 +82,7 @@ const Navbar = ({ onNavClick, hidden, isDark }) => {
         </div>
 
         {/* Right side: Lang toggle + Menu */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '24px', pointerEvents: 'auto' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 'clamp(12px, 3vw, 24px)', pointerEvents: 'auto' }}>
           {/* Language Toggle */}
           <button
             onClick={toggleLang}
@@ -90,7 +92,7 @@ const Navbar = ({ onNavClick, hidden, isDark }) => {
               border: 'none',
               cursor: 'pointer',
               padding: 0,
-              fontSize: '13px',
+              fontSize: 'clamp(11px, 2.5vw, 13px)',
               fontWeight: 400,
               letterSpacing: '0.08em',
               textTransform: 'uppercase',
@@ -117,7 +119,7 @@ const Navbar = ({ onNavClick, hidden, isDark }) => {
               border: 'none',
               cursor: 'pointer',
               padding: 0,
-              fontSize: '20px',
+              fontSize: 'clamp(13px, 3vw, 20px)',
               fontWeight: 400,
               letterSpacing: '0.01em',
               color: textColor,
