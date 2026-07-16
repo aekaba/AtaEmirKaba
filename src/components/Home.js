@@ -70,10 +70,10 @@ const Home = () => {
         {/* Description block — upper right, fades in */}
         <div
           className="w-full flex justify-end px-[26px]"
-          style={{ paddingTop: '90px' }}
+          style={{ paddingTop: 'clamp(70px, 12vw, 90px)' }}
         >
           <div
-            className="md:w-5/12"
+            className="w-full md:w-5/12"
             style={{
               opacity: mounted ? 1 : 0,
               transform: mounted ? 'translateY(0)' : 'translateY(14px)',
@@ -82,7 +82,7 @@ const Home = () => {
           >
             <p
               className="text-[var(--color-concrete)]"
-              style={{ fontSize: '20px', lineHeight: 1.5, letterSpacing: '-0.02em' }}
+              style={{ fontSize: 'clamp(15px, 2.5vw, 20px)', lineHeight: 1.5, letterSpacing: '-0.02em' }}
             >
               <strong className="text-[var(--color-pure-black)] font-[400]">
                 Ata Emir Kaba

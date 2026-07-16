@@ -66,7 +66,7 @@ const Contact = () => {
       style={{ minHeight: '100vh' }}
     >
       {/* ── Section label ── */}
-      <div style={{ padding: '100px 26px 0' }}>
+      <div style={{ padding: 'clamp(70px, 15vw, 100px) 26px 0' }}>
         <span
           className="uppercase block"
           style={{
@@ -86,12 +86,14 @@ const Contact = () => {
           style={{ borderTop: '1px solid var(--color-pure-black)' }}
         >
           <h1
-            className="text-[var(--color-pure-black)] uppercase whitespace-nowrap select-none"
+            className="text-[var(--color-pure-black)] uppercase select-none"
             style={{
-              fontSize: 'clamp(18px, 14.5vw, 260px)',
-              lineHeight: 0.82,
+              fontSize: 'clamp(14px, 14vw, 260px)',
+              lineHeight: 0.9,
               letterSpacing: '-0.04em',
               marginLeft: '-0.02em',
+              wordBreak: 'break-word',
+              whiteSpace: 'normal',
             }}
           >
             LET'S TALK
@@ -149,49 +151,39 @@ const Contact = () => {
           marginTop: '40px',
         }}
       >
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-y-[16px] items-center">
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'flex-end',
+            gap: '16px',
+          }}
+        >
+          {/* NFC Studio wordmark */}
+          <span
+            className="font-[400] uppercase text-[var(--color-pure-black)]"
+            style={{ fontSize: 'clamp(13px, 1.5vw, 18px)', letterSpacing: '-0.04em', lineHeight: 1, flexShrink: 0 }}
+          >
+            {tx.contact.studio}
+          </span>
 
-      {/* Col 1: NFC Studio wordmark */}
-          <div>
-            <span
-              className="font-[400] uppercase text-[var(--color-pure-black)]"
-              style={{ fontSize: 'clamp(14px, 1.5vw, 20px)', letterSpacing: '-0.04em', lineHeight: 1 }}
+          {/* Privacy + copyright */}
+          <div
+            className="flex flex-col items-end gap-[4px]"
+            style={{ color: 'var(--color-concrete)', fontSize: '11px', letterSpacing: '0.04em', lineHeight: 1.7, textAlign: 'right' }}
+          >
+            <Link
+              to="/privacy"
+              className="hover:text-[var(--color-pure-black)] transition-colors"
+              style={{ color: 'var(--color-concrete)' }}
             >
-              {tx.contact.studio}
-            </span>
+              {tx.contact.privacy}
+            </Link>
+            <span>{tx.contact.copyright}</span>
           </div>
-
-          {/* Col 2: Name + location */}
-          <div>
-            <p style={{ color: 'var(--color-concrete)', fontSize: '11px', letterSpacing: '0.04em', lineHeight: 1.7 }}>
-              {tx.contact.tagline}<br />
-              {tx.contact.location}
-            </p>
-          </div>
-
-          {/* Col 3: spacer */}
-          <div />
-
-          {/* Col 4: Privacy + copyright */}
-          <div className="text-right">
-            <div
-              className="flex flex-col items-end gap-[4px]"
-              style={{ color: 'var(--color-concrete)', fontSize: '11px', letterSpacing: '0.04em', lineHeight: 1.7 }}
-            >
-              <Link
-                to="/privacy"
-                className="hover:text-[var(--color-pure-black)] transition-colors"
-                style={{ color: 'var(--color-concrete)' }}
-              >
-                {tx.contact.privacy}
-              </Link>
-              <span>{tx.contact.copyright}</span>
-            </div>
-          </div>
-
-
         </div>
       </footer>
+
     </section>
   );
 };
